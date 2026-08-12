@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://kait2en.org/</loc>
+         <lastmod>2026-08-12</lastmod>
+    </url>
+    <url>
+         <loc>https://kait2en.org/features/</loc>
+         <lastmod>2026-08-12</lastmod>
+    </url>
+    <url>
+         <loc>https://kait2en.org/installation/</loc>
+         <lastmod>2026-08-12</lastmod>
+    </url>
+    <url>
+         <loc>https://kait2en.org/post-install/audio-dsp/</loc>
+         <lastmod>2026-08-12</lastmod>
+    </url>
+    <url>
+         <loc>https://kait2en.org/post-install/configuring-gpus/</loc>
+         <lastmod>2026-08-12</lastmod>
+    </url>
+    <url>
+         <loc>https://kait2en.org/post-install/hardware-video-decoding/</loc>
+         <lastmod>2026-08-12</lastmod>
+    </url>
+    <url>
+         <loc>https://kait2en.org/post-install/updating/</loc>
+         <lastmod>2026-08-12</lastmod>
+    </url>
+    <url>
+         <loc>https://kait2en.org/reference/installed-files/</loc>
+         <lastmod>2026-08-12</lastmod>
+    </url>
+</urlset>

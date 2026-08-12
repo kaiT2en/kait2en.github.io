@@ -1,0 +1,1066 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://kait2en.org/installation/">
+      
+      
+        <link rel="prev" href="../features/">
+      
+      
+        <link rel="next" href="../post-install/audio-dsp/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/kaiT2en-logo-tr.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Installation - KAIT2EN Fedora</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#installation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="KAIT2EN Fedora" class="md-header__button md-logo" aria-label="KAIT2EN Fedora" data-md-component="logo">
+      
+  <img src="../assets/kaiT2en-logo-tr.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            KAIT2EN Fedora
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Installation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/kaiT2en/KaiT2en-Fedora" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    kaiT2en/KAIT2EN-Fedora
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="KAIT2EN Fedora" class="md-nav__button md-logo" aria-label="KAIT2EN Fedora" data-md-component="logo">
+      
+  <img src="../assets/kaiT2en-logo-tr.png" alt="logo">
+
+    </a>
+    KAIT2EN Fedora
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/kaiT2en/KaiT2en-Fedora" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    kaiT2en/KAIT2EN-Fedora
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features & status
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before you start
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Before you start">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#disable-apple-secure-boot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disable Apple Secure Boot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-space-for-fedora" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create space for Fedora
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-the-fedora-usb-drive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create the Fedora USB drive
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-fedora" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Fedora
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Install Fedora">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#if-the-live-system-does-not-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        If the live system does not start
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if-hardware-is-missing-in-the-live-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        If hardware is missing in the live system
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finish-the-kait2en-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finish the KAIT2EN installation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Post-install
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Post-install
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../post-install/audio-dsp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Audio DSP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../post-install/configuring-gpus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configure GPUs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../post-install/hardware-video-decoding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hardware video decoding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../post-install/updating/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Updating
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/installed-files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installed files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before you start
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Before you start">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#disable-apple-secure-boot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disable Apple Secure Boot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-space-for-fedora" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create space for Fedora
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-the-fedora-usb-drive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create the Fedora USB drive
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-fedora" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Fedora
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Install Fedora">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#if-the-live-system-does-not-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        If the live system does not start
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if-hardware-is-missing-in-the-live-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        If hardware is missing in the live system
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finish-the-kait2en-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finish the KAIT2EN installation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<p align="center">
+  <img src="../assets/kaiT2en-logo-tr.png" alt="KAIT2EN logo" width="220">
+</p>
+
+<h1 id="installation">Installation</h1>
+<p>The installation starts in macOS and continues in Fedora:</p>
+<ol>
+<li>In macOS Recovery, disable Secure Boot and allow booting from external media.</li>
+<li>In macOS, create a separate partition for Fedora.</li>
+<li>Boot macOS and run the KAIT2EN installer.</li>
+<li>Choose a supported Fedora edition and an empty USB drive.</li>
+<li>The installer downloads and verifies the official Fedora image.</li>
+<li>It collects the Apple Wi-Fi firmware from your Mac and, where required, the
+   PCIe Bluetooth firmware.</li>
+<li>It writes the unchanged Fedora image to the USB drive, then adds separate
+   KAIT2EN boot files for keyboard, trackpad, firmware, and installer support.</li>
+<li>Boot the USB drive and install Fedora. After the first login, the guided
+   KAIT2EN setup installs the remaining drivers and system integration.</li>
+<li>After another reboot, you can enjoy KAIT2EN on top of vanilla Fedora.</li>
+</ol>
+<p>The installer currently supports Fedora Workstation, Fedora KDE Desktop and
+Fedora COSMIC Spin. We strongly recommend installing Workstation (Gnome)
+because that is what we devs use ourselves. KDE and Cosmic are generally more
+problematic. We can't help you with that because we don't use it.</p>
+<h2 id="before-you-start">Before you start</h2>
+<p>You need:</p>
+<ul>
+<li>a T2 Mac with macOS still installed</li>
+<li>an empty USB drive</li>
+<li>an internet connection in macOS</li>
+</ul>
+<p>Back up important data before changing partitions or boot settings.</p>
+<p>Keep macOS installed. It is the clean source for Apple firmware and can recover
+T2/bridgeOS hardware states.</p>
+<h3 id="disable-apple-secure-boot">Disable Apple Secure Boot</h3>
+<ul>
+<li>Shut down the Mac.</li>
+<li>Turn it on and immediately hold <code>Command-R</code> until macOS Recovery starts.</li>
+<li>Select a macOS administrator account and enter its password when prompted.</li>
+<li>From the menu bar, open <code>Utilities</code> &gt; <code>Startup Security Utility</code>.</li>
+<li>Select the macOS system disk if the utility asks for one.</li>
+<li>Set the following options:</li>
+</ul>
+<p><code>Secure Boot: No Security</code></p>
+<p><code>Allowed Boot Media: Allow booting from external or removable media</code></p>
+<ul>
+<li>Close Startup Security Utility and restart into macOS.</li>
+</ul>
+<p>Apple Secure Boot cannot boot standard Fedora while it is enabled. The installer
+checks the current setting and warns when it cannot confirm that Secure Boot is
+disabled.</p>
+<h3 id="create-space-for-fedora">Create space for Fedora</h3>
+<p>Open Disk Utility in macOS. Select the internal macOS disk or container, choose
+<code>Partition</code>, and add a real <code>exFAT</code> partition for Fedora. Do not add an APFS
+volume. Fedora will reformat this partition during installation; <code>exFAT</code> only
+makes it easy to identify.</p>
+<p>Choose the size carefully because resizing the partitions later is not a small
+maintenance task. Keep at least <code>50 GB</code> for macOS so there is enough space for
+updates, firmware work, and recovery tasks. Give the remaining space you want
+to use for Linux to the new partition.</p>
+<p>Do not delete the EFI partition or macOS.</p>
+<h2 id="create-the-fedora-usb-drive">Create the Fedora USB drive</h2>
+<p>Boot macOS and connect the empty USB drive. Open Terminal and run:</p>
+<pre><code class="language-bash">curl -fsSL https://github.com/kaiT2en/KaiT2en-Fedora/releases/latest/download/install-kait2en-fedora.sh | bash
+</code></pre>
+<p>Choose the Fedora desktop and USB drive. The script downloads and verifies the
+official Fedora image, finds the Apple Wi-Fi firmware used by this Mac and asks
+for an exact confirmation before erasing the USB drive.</p>
+<p>The official Fedora image itself is not modified. After writing the verified
+vanilla image, the script adds KAIT2EN boot files only to the USB drive's EFI
+partition. Separate initramfs overlays provide the temporary input drivers and
+installer integration at boot; Fedora's live system and installation payload
+remain unchanged.</p>
+<p>Be exact when selecting the drive. All data on it will be destroyed.</p>
+<h2 id="install-fedora">Install Fedora</h2>
+<p>Shut down or reboot the Mac. Hold <code>Option</code> during startup and select the orange
+<code>EFI Boot</code> entry for the Fedora USB drive. The KAIT2EN Fedora entry starts
+automatically.</p>
+<p>Keyboard, trackpad, and Wi-Fi should work in the live system and installer. The
+live system installs the Apple Wi-Fi firmware from the USB drive for itself, so
+you can connect to a network before or instead of installing Fedora.</p>
+<p>Macs whose Bluetooth controller sits on PCIe (BCM4377) also get their Apple
+Bluetooth firmware in the live system, so a Bluetooth keyboard or mouse can be
+paired before installing. Every other T2 Mac drives Bluetooth over UART and
+needs no separate firmware file.</p>
+<p>Install Fedora normally. Use custom partitioning and select the Linux partition
+you created in macOS. Do not erase the whole disk or macOS. When reinstalling,
+format an existing Linux <code>/boot</code> partition so old kernels do not fill it.</p>
+<p>After installation finishes, remove the USB drive and boot the installed Fedora
+system.</p>
+<h3 id="if-the-live-system-does-not-start">If the live system does not start</h3>
+<p>The boot menu offers a few troubleshooting entries that are only needed when the
+normal boot does not work. Try them in this order and stop at the first one that
+works:</p>
+<ol>
+<li><code>Troubleshooting: KaiT2en with boot messages</code> shows the console instead of
+   the logo. Photograph the last lines for a bug report.</li>
+<li><code>Troubleshooting: KaiT2en with the dedicated GPU disabled</code> keeps <code>amdgpu</code>
+   out of the boot and leaves the Intel GPU fully accelerated.</li>
+<li><code>Troubleshooting: KaiT2en with basic graphics</code> adds <code>nomodeset</code>. Rendering
+   is done in software and feels slow, but it can run the installation.</li>
+<li><code>Troubleshooting: KaiT2en with basic graphics and conservative PCIe</code> is the
+   last resort and also covers a power off coming from PCIe or Thunderbolt.</li>
+</ol>
+<p>All of them keep the KAIT2EN input drivers. If entry 2 or 3 was needed, make
+the fix permanent afterwards as described in
+<a href="../post-install/configuring-gpus/">Configure GPUs</a>.</p>
+<h3 id="if-hardware-is-missing-in-the-live-system">If hardware is missing in the live system</h3>
+<p>KAIT2EN supports the known T2 configurations, but Apple shipped several
+controller and firmware variants. If keyboard, trackpad, Wi-Fi, or PCIe
+Bluetooth support is missing, collect diagnostics before continuing with the
+installation.</p>
+<p>The individual helpers can be run manually to see the Wi-Fi or Bluetooth setup
+result directly:</p>
+<pre><code class="language-bash">sudo /run/kait2en/kait2en-live-wifi
+sudo /run/kait2en/kait2en-live-bluetooth
+</code></pre>
+<p>For a complete diagnostic archive, run:</p>
+<pre><code class="language-bash">sudo /run/kait2en/kait2en-live-diagnostics --rerun
+</code></pre>
+<p>This reruns the firmware setup while recording what happened. The archive lands
+on a second USB drive when one is mounted, otherwise in <code>/tmp</code>; the path is
+printed at the end. It contains host names, MAC addresses, and the names of
+nearby wireless networks, so inspect it before attaching it to a bug report.</p>
+<h2 id="finish-the-kait2en-installation">Finish the KAIT2EN installation</h2>
+<p>Sign in to Fedora and connect to Wi-Fi. A terminal opens automatically and
+starts the KAIT2EN installer in two phases. Do not close this window and follow
+the prompts.</p>
+<p>The first phase updates Fedora and prepares the new kernel. Reboot when asked.
+After signing in again, the second phase opens automatically and runs the
+regular KAIT2EN installer. Reboot once more after it completes successfully.</p>
+<p>If the terminal does not appear, open one and run this command without <code>sudo</code>:</p>
+<pre><code class="language-bash">kait2en-install
+</code></pre>
+<p>The installer asks for administrator access when it is needed. It can also be
+started again at any later time to update KAIT2EN.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.indexes", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../javascripts/feature-board.js"></script>
+      
+    
+  </body>
+</html>
