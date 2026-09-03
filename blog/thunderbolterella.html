@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thunderbolterella Swallowed the Whole Apple - KAIT2EN Fedora</title>
+    <meta name="description" content="The hunt for deep package C-states on the 15,1 MacBook Pro gets ugly">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Thunderbolterella Swallowed the Whole Apple - KAIT2EN Fedora">
+    <meta property="og:description" content="The hunt for deep package C-states on the 15,1 MacBook Pro gets ugly">
+    <meta property="og:url" content="https://kait2en.org/blog/thunderbolterella.html">
+    <meta property="og:image" content="https://kait2en.org/img/og-image.png">
+    <meta property="og:site_name" content="KAIT2EN Fedora">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Thunderbolterella Swallowed the Whole Apple - KAIT2EN Fedora">
+    <meta name="twitter:description" content="The hunt for deep package C-states on the 15,1 MacBook Pro gets ugly">
+    <meta name="twitter:image" content="https://kait2en.org/img/og-image.png">
+
+    <link rel="canonical" href="https://kait2en.org/blog/thunderbolterella.html">
+    <link rel="alternate" type="application/rss+xml" title="KAIT2EN Fedora blog" href="../feed.xml">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../img/favicon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <!-- Grid Background -->
+    <div class="grid-bg"></div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo" aria-label="KAIT2EN Fedora">
+                <img src="../img/kait2en-wordmark.png" alt="KAIT2EN Fedora">
+            </a>
+            <button class="nav-burger" onclick="toggleMenu()" aria-label="Open menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <line x1="3" y1="12" x2="21" y2="12"/>
+                    <line x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+            </button>
+            <div class="nav-links" id="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../documentation.html">Documentation</a>
+                <a href="../blog.html">Blog</a>
+                <a href="https://github.com/kaiT2en/KaiT2en-Fedora" target="_blank" rel="noopener" class="nav-github">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+
+                    GitHub
+                </a>
+                <a href="https://discord.gg/AGfjRk4ydj" target="_blank" rel="noopener" class="nav-discord">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20.317 4.369a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.445.865-.608 1.249a18.27 18.27 0 0 0-5.487 0 12.51 12.51 0 0 0-.617-1.25.077.077 0 0 0-.079-.036A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .079.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127c-.598.35-1.22.645-1.873.891a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.056c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.096 2.157 2.42 0 1.332-.955 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.332-.946 2.418-2.157 2.418z"/></svg>
+
+                    Discord
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-container page-container--top">
+        <aside class="page-sidebar">
+            <h2 class="page-title">Blog</h2>
+            <div class="sidebar-posts">
+                <a href="../blog/how-we-fixed-psr-on-t2-macs.html">
+                    <span class="sidebar-post-date">29 Aug 2026</span>
+                    How we fixed PSR on T2 Macs
+                </a>
+                <a href="../blog/thunderbolterella.html" class="active">
+                    <span class="sidebar-post-date">15 Aug 2026</span>
+                    Thunderbolterella Swallowed the Whole Apple
+                </a>
+                <a href="../blog/enfant-terrible.html">
+                    <span class="sidebar-post-date">14 Aug 2026</span>
+                    Enfant Terrible
+                </a>
+                <a href="../blog/hybrid-graphics-upstream.html">
+                    <span class="sidebar-post-date">12 Aug 2026</span>
+                    The MacBookPro15,1 finally has hybrid graphics
+                </a>
+                <a href="../blog/where-did-the-watts-go.html">
+                    <span class="sidebar-post-date">11 Aug 2026</span>
+                    Where did the watts go?
+                </a>
+                <a href="../blog/more-than-a-fan-controller.html">
+                    <span class="sidebar-post-date">10 Aug 2026</span>
+                    More than a fan controller
+                </a>
+                <a href="../blog/the-navi-rabbit-hole.html">
+                    <span class="sidebar-post-date">06 Aug 2026</span>
+                    The Navi rabbit hole
+                </a>
+                <a href="../blog/three-watts-and-a-dead-usb-port.html">
+                    <span class="sidebar-post-date">02 Aug 2026</span>
+                    Three watts and a dead USB port
+                </a>
+                <a href="../blog/the-small-things-you-touch-every-day.html">
+                    <span class="sidebar-post-date">29 Jul 2026</span>
+                    The small things you touch every day
+                </a>
+                <a href="../blog/making-the-speakers-sound-like-speakers.html">
+                    <span class="sidebar-post-date">27 Jul 2026</span>
+                    Making the speakers sound like speakers
+                </a>
+                <a href="../blog/the-resume-that-took-a-minute.html">
+                    <span class="sidebar-post-date">24 Jul 2026</span>
+                    The resume that took a minute
+                </a>
+                <a href="../blog/kait2en-is-through-the-door.html">
+                    <span class="sidebar-post-date">14 Jul 2026</span>
+                    KAIT2EN is through the door
+                </a>
+            </div>
+            <a href="../blog.html" class="btn btn-secondary">All posts</a>
+        </aside>
+
+        <main class="page-content">
+            <article>
+                <header class="post-header">
+                    <h1>Thunderbolterella Swallowed the Whole Apple</h1>
+                    <div class="post-meta">
+                        <time datetime="2026-08-15">15 Aug 2026</time>
+                        <span class="dot"></span>
+                        <span>Andre Eikmeyer</span>
+                        <span class="post-tag">thunderbolt</span>
+                        <span class="post-tag">power</span>
+                        <span class="post-tag">debugging</span>
+                    </div>
+                    <p class="post-lead">The hunt for deep package C-states on the 15,1 MacBook Pro gets ugly</p>
+                </header>
+
+                <figure>
+  <img src="../img/blog/thunderbolterella.jpg" alt="Thunderbolterella, seven C-state dwarfs and a bitten PC7 Apple">
+</figure>
+
+<p>Thunderbolterella was home alone in her unibody case. The seven C-states had
+flown out, the fans were quiet and nobody was supposed to touch anything.</p>
+<p>Naturally, we touched everything.</p>
+<p>This is the next chapter of
+<a href="three-watts-and-a-dead-usb-port.html">Three watts and a dead USB port</a>. Back
+then we had already seen the MacBookPro15,1 reach package C7. It saved roughly
+three watts, which is a lot on a laptop, but USB 3 storage stopped coming back
+reliably. That's why I withdrew the patch upstream. We enabled native PCIe port
+services and got hotplug and UAS working again. Package C7 disappeared in that
+process.</p>
+<p>That was supposed to be the clean starting point.</p>
+<h2 id="the-cherry-pick-that-ate-resume">The cherry-pick that ate resume<a class="headerlink" href="#the-cherry-pick-that-ate-resume">#</a></h2>
+<p>While moving the working 15,1 hybrid graphics implementation onto <code>main</code>, an old
+Thunderbolt change came along for the ride. Nothing exploded. Suspend still
+worked. Resume still worked. The machine merely sat on a black screen for
+about 20 seconds before the embedded controller finally came back.
+And it took me three days to notice, because I never have the time to suspend.
+I literally work the whole day on the 15,1 and then I shut it down for the night.
+Because suspend still consumes 0.3W to keep RAM alive. So for sleep and longer periods
+I shut it down. Presumably until the day I get hibernation working.</p>
+<div class="code-wrap"><div class="highlight"><pre><span></span><code>[86.680577] ACPI: PM: Waking up from system sleep state S3
+[106.251963] ACPI: EC: interrupt unblocked
+</code></pre></div><button class="copy-btn" type="button" onclick="copyBlock(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div>
+
+<p>This was the regression. Twenty seconds to unblock the EC controller on resume.
+This means twenty seconds of a MacBook playing dead after opening the lid.
+What a royal P in the A. I actually solved that. Why is it back again?</p>
+<p>I did not notice it during the cherry-pick. Hybrid graphics worked, the dGPU
+went to <code>DynOff</code>, external displays worked and there were enough other things
+to test. Commit - push - Bwah!</p>
+<h2 id="who-ate-from-my-branch">Who ate from my branch?<a class="headerlink" href="#who-ate-from-my-branch">#</a></h2>
+<p>The Thunderbolt repository did not exactly help.</p>
+<p>We build the complete Thunderbolt driver out of tree so that a change can be
+tested locally without compiling an entire kernel. That is brilliant when you
+know which change you are testing. We had several branches, uncommitted
+experiments, an unsure old known-good state, a withdrawn xHCI patch and a patch series
+from <code>@byte</code> that had reached revision twelfty-something while upstream maintainer
+Mika turned out to be a shapeshifter around patch #7.</p>
+<p>I leaned back, took a deep breath. I relaxed myself completely. That helped my
+brain form a clear thought and express it through my mouth.</p>
+<h2 id="oh-my-lord-what-have-i-pushed">Oh my lord, what have I pushed?<a class="headerlink" href="#oh-my-lord-what-have-i-pushed">#</a></h2>
+<p>"What the f is going on here?!" - It actually tried to communicate "Who has eaten
+from my little plate?" to stay on topic here.</p>
+<p>It also became increasingly difficult to tell which parts of the series came
+from which debugging session. Some of the device-link work was shared, some of
+the link ordering came from our local experiments and later revisions had
+already moved beyond the driver installed on the test machine.</p>
+<p>I wasn't able to tell what my code was actually doing at this point.
+Before touching package C-states I would need to find out.</p>
+<h2 id="jeff-bridges-or-what-does-luke-do-in-my-warm-water">Jeff Bridges - or what does Luke do in my warm water<a class="headerlink" href="#jeff-bridges-or-what-does-luke-do-in-my-warm-water">#</a></h2>
+<p>So we stopped looking for C7 and turned <code>t2thunderbolt</code> upside down.
+It is a little helper module that contains fixes for link ordering
+on resume and it allows us to fix the larger thunderbolt driver
+without the need to ship and maintain it. Practically speaking, KaiT2en uses two
+Thunderbolt drivers. And I may have it abused to try something and forgot about
+it in the process.</p>
+<p>The MacBookPro15,1 does not have one neat Thunderbolt device. It has two
+mirrored PCIe trees. One for each side of the MacBook. Each starts at a CPU root
+port, passes through an Alpine Ridge bridge and a Titan Ridge bridge, then
+splits into an NHI, several downstream ports and an xHCI controller. On a
+saturday morning, things like these make my eyes cross:</p>
+<figure>
+  <img src="../img/blog/thunderbolt.jpg" alt="T2 Power Explorer showing both Thunderbolt PCIe trees on a MacBookPro15,1">
+  <figcaption>Thunderbolterella in her natural habitat. Two mirrored trees, a pile of bridges and enough D-states to lose track of the plot.</figcaption>
+</figure>
+
+<p>Bridges..Bridges...Even more Bridges...Jeff Bridges!
+This stuff makes me feel like Kevin Flynn being sucked into the <code>TRON</code> mainframe.</p>
+<p>Our Power-Explorer app makes the relationship visible. The xHCI at <code>07:00.0</code> and
+<code>7d:00.0</code> could suspend into D3hot without breaking anything. Their immediate
+parent Jeff Bridges at <code>05:02.0</code> and <code>7b:02.0</code> could not. Allow those Jeff
+Bridges into D3 and resume spent about 20 seconds waiting for the EC. EC means
+Embedded Controller BTW.
+I started an ACPI experiment that tried to follow Apple's <code>RTPC</code>
+path made things worse: slow resume, xHCI reinitialisation, dead UAS and still
+no package C7. And a dead Jeff Bridges. And a luke warm cup of coffee. Dammit.</p>
+<p>Saturday morning long gone. We are in the afternoon now.</p>
+<p>There was the missing piece. Not a grand PC7 breakthrough, but at least the
+regression finally had a name.</p>
+<p>The safe arrangement is currently:</p>
+<div class="code-wrap"><div class="highlight"><pre><span></span><code>05:02.0  D0
+└─ 07:00.0  suspended  D3hot
+
+7b:02.0  D0
+└─ 7d:00.0  suspended  D3hot
+</code></pre></div><button class="copy-btn" type="button" onclick="copyBlock(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div>
+
+<p>With that restored, the EC came back in roughly one second again.</p>
+<div class="code-wrap"><div class="highlight"><pre><span></span><code>[   97.432854] ACPI: PM: Waking up from system sleep state S3
+[   98.488680] ACPI: EC: interrupt unblocked
+</code></pre></div><button class="copy-btn" type="button" onclick="copyBlock(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div>
+
+<p>USB 3 hotplug worked. UAS worked. Suspend worked. Resume worked. AHA!</p>
+<div class="code-wrap"><div class="highlight"><pre><span></span><code>(Ah, push it) push it good
+(Ah, push it) p-push it real good
+</code></pre></div><button class="copy-btn" type="button" onclick="copyBlock(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div>
+
+<h2 id="the-seven-c-states-everyone-claims-to-have-seen">The seven C-states everyone claims to have seen<a class="headerlink" href="#the-seven-c-states-everyone-claims-to-have-seen">#</a></h2>
+<p>Package C3 as a result. Doesn't feel rewarding.</p>
+<p>Now we could return to the actual mystery. Somewhere between package C3 and
+package C10 live seven increasingly mythical power states. Everybody had seen
+them once. There were screenshots. There were old measurements. PC7 definitely
+existed. It simply refused to appear while Thunderbolterella remained alive.</p>
+<p>I checked the obvious suspects. The CPU cores themselves regularly reached
+C7 and C10. PowerTOP showed wakeups, but not enough to explain hitting a wall at
+PC3. The PCH xHCI controller suspended. Bluetooth was detached long enough to
+turn the LPSS power island off. Wi-Fi was tested. ASPM L1 was enabled across
+the populated Thunderbolt links. Even changing the ASPM policy to
+<code>powersupersave</code> did not move the package by one state.</p>
+<p>Finally I checked whether firmware had simply capped the package at C3:</p>
+<div class="code-wrap"><div class="highlight"><pre><span></span><code>MSR_PKG_CST_CONFIG_CONTROL: 0x8
+
+Package C2 : 153163464
+Package C3 : 367368581
+Package C6 : 0
+Package C7 : 0
+Package C8 : 0
+Package C9 : 0
+Package C10: 0
+</code></pre></div><button class="copy-btn" type="button" onclick="copyBlock(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div>
+
+<p>Nope! </p>
+<p>On Coffee Lake, <code>0x8</code> means unlimited. The cores can sleep deeply, the firmware is
+not setting a PC3 limit and the deeper package counters remain exactly zero.
+That leaves an uncore, PCIe or PCH power-gating condition.
+Thunderbolterella still has the Apple stuck in her throat.</p>
+<p>The seven C-states do come back when we kill Thunderbolt completely. They are
+happy to attend the funeral. But nobody can get the Apple out of her afterwards.
+Not even the dude himself, Jeff Bridges could do that.
+The controllers become inaccessible, resume throws PCI power-state and ring
+warnings, configuration-space accesses time out and Thunderbolt does not return
+to life.</p>
+<p>That is not power management. That is a burial.</p>
+<h2 id="a-baseline-before-the-next-fairy-tale">A baseline before the next fairy tale<a class="headerlink" href="#a-baseline-before-the-next-fairy-tale">#</a></h2>
+<p>This time we wrote down the boring state before continuing. The current
+baseline has fast resume, working USB 3 hotplug, working UAS and package C3.
+Every future PC7 experiment has to retain all four. Seeing a lower wattage or a
+deeper C-state is not exactly a success when storage disappears or the machine
+spends 20 seconds waking up.</p>
+<p>We still know package C7 is possible on this hardware. At least. Theoretically
+even C10 is possible. But that requires reverse engineering PSR and possibly
+even worse. We also know more precisely which parts of the Thunderbolt tree may
+sleep safely and which ones currently swallow the whole Apple. The next step must
+be to move up that tree one device at a time, with a known-good branch underneath
+and no more mystery commits hiding in the carriage.</p>
+<p>Thunderbolterella is alive again. The seven C-states are still out. But hey, 9W
+on idle on a 8 year old 15 inch without OLED isn't that bad.
+You hear me, Lenovo? We're coming for ya!</p>
+            </article>
+
+            <nav class="post-nav">
+                <a href="../blog/enfant-terrible.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+ Enfant Terrible</a>
+                <a href="../blog/how-we-fixed-psr-on-t2-macs.html">How we fixed PSR on T2 Macs <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+</a>
+            </nav>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="../img/kait2en-wordmark.png" alt="KAIT2EN Fedora">
+                </div>
+
+                <div class="footer-links">
+                    <a href="https://github.com/kaiT2en/KaiT2en-Fedora" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+
+                        GitHub
+                    </a>
+                    <a href="https://github.com/kaiT2en/KaiT2en-Fedora/issues" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><rect x="8" y="6" width="8" height="14" rx="4"/><path d="M19 7l-3 2M5 7l3 2M19 20l-3-2M5 20l3-2M22 13h-6M8 13H2"/></svg>
+
+                        Issues
+                    </a>
+                    <a href="../documentation.html">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+
+                        Documentation
+                    </a>
+                </div>
+
+                <div class="footer-support">
+                    <span>Join the community</span>
+                    <div class="support-links">
+                        <a href="https://discord.gg/AGfjRk4ydj" target="_blank" rel="noopener" class="support-btn discord">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.317 4.369a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.445.865-.608 1.249a18.27 18.27 0 0 0-5.487 0 12.51 12.51 0 0 0-.617-1.25.077.077 0 0 0-.079-.036A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .079.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127c-.598.35-1.22.645-1.873.891a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.056c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.096 2.157 2.42 0 1.332-.955 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.332-.946 2.418-2.157 2.418z"/></svg>
+
+                            Discord
+                        </a>
+                        <a href="https://matrix.to/#/%23kait2en:matrix.org" target="_blank" rel="noopener" class="support-btn matrix">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M6.5 3H3v18h3.5"/><path d="M17.5 3H21v18h-3.5"/><path d="M8 16.5v-8"/><path d="M8 10.6c.4-1.4 1.4-2.1 2.5-2.1 1.2 0 2 .9 2 2.3v5.7"/><path d="M12.5 10.6c.4-1.4 1.4-2.1 2.5-2.1 1.2 0 2 .9 2 2.3v5.7"/></svg>
+
+                            Matrix
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>MIT · KAIT2EN Fedora</p>
+                <p>Made for T2 Macs that deserve a current kernel</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Navigation Modal -->
+    <div id="nav-modal" class="nav-modal">
+        <div class="nav-modal-header">
+            <a href="../index.html" class="nav-logo" aria-label="KAIT2EN Fedora">
+                <img src="../img/kait2en-wordmark.png" alt="KAIT2EN Fedora">
+            </a>
+            <button class="nav-modal-close" onclick="closeMenu()" aria-label="Close menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+        <div class="nav-modal-content">
+            <div class="nav-modal-section">
+                <h4>Navigation</h4>
+                <div class="nav-modal-links">
+                    <a href="../index.html">Home</a>
+                    <a href="../documentation.html">Documentation</a>
+                    <a href="../blog.html">Blog</a>
+                    <a href="https://github.com/kaiT2en/KaiT2en-Fedora" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+
+                        GitHub
+                    </a>
+                    <a href="https://discord.gg/AGfjRk4ydj" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20.317 4.369a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.445.865-.608 1.249a18.27 18.27 0 0 0-5.487 0 12.51 12.51 0 0 0-.617-1.25.077.077 0 0 0-.079-.036A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .079.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127c-.598.35-1.22.645-1.873.891a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.056c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.096 2.157 2.42 0 1.332-.955 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.332-.946 2.418-2.157 2.418z"/></svg>
+
+                        Discord
+                    </a>
+                    <a href="https://matrix.to/#/%23kait2en:matrix.org" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M6.5 3H3v18h3.5"/><path d="M17.5 3H21v18h-3.5"/><path d="M8 16.5v-8"/><path d="M8 10.6c.4-1.4 1.4-2.1 2.5-2.1 1.2 0 2 .9 2 2.3v5.7"/><path d="M12.5 10.6c.4-1.4 1.4-2.1 2.5-2.1 1.2 0 2 .9 2 2.3v5.7"/></svg>
+
+                        Matrix
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../main.js"></script>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+        <img id="lightbox-img" src="" alt="">
+    </div>
+</body>
+</html>

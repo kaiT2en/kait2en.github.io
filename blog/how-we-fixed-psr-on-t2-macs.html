@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How we fixed PSR on T2 Macs - KAIT2EN Fedora</title>
+    <meta name="description" content="A macOS display trace revealed the sink-specific sequence needed to enable Panel Self Refresh, reduce idle power and reach package C10 on T2 Macs.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="How we fixed PSR on T2 Macs - KAIT2EN Fedora">
+    <meta property="og:description" content="A macOS display trace revealed the sink-specific sequence needed to enable Panel Self Refresh, reduce idle power and reach package C10 on T2 Macs.">
+    <meta property="og:url" content="https://kait2en.org/blog/how-we-fixed-psr-on-t2-macs.html">
+    <meta property="og:image" content="https://kait2en.org/img/og-image.png">
+    <meta property="og:site_name" content="KAIT2EN Fedora">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How we fixed PSR on T2 Macs - KAIT2EN Fedora">
+    <meta name="twitter:description" content="A macOS display trace revealed the sink-specific sequence needed to enable Panel Self Refresh, reduce idle power and reach package C10 on T2 Macs.">
+    <meta name="twitter:image" content="https://kait2en.org/img/og-image.png">
+
+    <link rel="canonical" href="https://kait2en.org/blog/how-we-fixed-psr-on-t2-macs.html">
+    <link rel="alternate" type="application/rss+xml" title="KAIT2EN Fedora blog" href="../feed.xml">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../img/favicon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <!-- Grid Background -->
+    <div class="grid-bg"></div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo" aria-label="KAIT2EN Fedora">
+                <img src="../img/kait2en-wordmark.png" alt="KAIT2EN Fedora">
+            </a>
+            <button class="nav-burger" onclick="toggleMenu()" aria-label="Open menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <line x1="3" y1="12" x2="21" y2="12"/>
+                    <line x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+            </button>
+            <div class="nav-links" id="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../documentation.html">Documentation</a>
+                <a href="../blog.html">Blog</a>
+                <a href="https://github.com/kaiT2en/KaiT2en-Fedora" target="_blank" rel="noopener" class="nav-github">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+
+                    GitHub
+                </a>
+                <a href="https://discord.gg/AGfjRk4ydj" target="_blank" rel="noopener" class="nav-discord">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20.317 4.369a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.445.865-.608 1.249a18.27 18.27 0 0 0-5.487 0 12.51 12.51 0 0 0-.617-1.25.077.077 0 0 0-.079-.036A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .079.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127c-.598.35-1.22.645-1.873.891a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.056c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.096 2.157 2.42 0 1.332-.955 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.332-.946 2.418-2.157 2.418z"/></svg>
+
+                    Discord
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-container page-container--top">
+        <aside class="page-sidebar">
+            <h2 class="page-title">Blog</h2>
+            <div class="sidebar-posts">
+                <a href="../blog/how-we-fixed-psr-on-t2-macs.html" class="active">
+                    <span class="sidebar-post-date">29 Aug 2026</span>
+                    How we fixed PSR on T2 Macs
+                </a>
+                <a href="../blog/thunderbolterella.html">
+                    <span class="sidebar-post-date">15 Aug 2026</span>
+                    Thunderbolterella Swallowed the Whole Apple
+                </a>
+                <a href="../blog/enfant-terrible.html">
+                    <span class="sidebar-post-date">14 Aug 2026</span>
+                    Enfant Terrible
+                </a>
+                <a href="../blog/hybrid-graphics-upstream.html">
+                    <span class="sidebar-post-date">12 Aug 2026</span>
+                    The MacBookPro15,1 finally has hybrid graphics
+                </a>
+                <a href="../blog/where-did-the-watts-go.html">
+                    <span class="sidebar-post-date">11 Aug 2026</span>
+                    Where did the watts go?
+                </a>
+                <a href="../blog/more-than-a-fan-controller.html">
+                    <span class="sidebar-post-date">10 Aug 2026</span>
+                    More than a fan controller
+                </a>
+                <a href="../blog/the-navi-rabbit-hole.html">
+                    <span class="sidebar-post-date">06 Aug 2026</span>
+                    The Navi rabbit hole
+                </a>
+                <a href="../blog/three-watts-and-a-dead-usb-port.html">
+                    <span class="sidebar-post-date">02 Aug 2026</span>
+                    Three watts and a dead USB port
+                </a>
+                <a href="../blog/the-small-things-you-touch-every-day.html">
+                    <span class="sidebar-post-date">29 Jul 2026</span>
+                    The small things you touch every day
+                </a>
+                <a href="../blog/making-the-speakers-sound-like-speakers.html">
+                    <span class="sidebar-post-date">27 Jul 2026</span>
+                    Making the speakers sound like speakers
+                </a>
+                <a href="../blog/the-resume-that-took-a-minute.html">
+                    <span class="sidebar-post-date">24 Jul 2026</span>
+                    The resume that took a minute
+                </a>
+                <a href="../blog/kait2en-is-through-the-door.html">
+                    <span class="sidebar-post-date">14 Jul 2026</span>
+                    KAIT2EN is through the door
+                </a>
+            </div>
+            <a href="../blog.html" class="btn btn-secondary">All posts</a>
+        </aside>
+
+        <main class="page-content">
+            <article>
+                <header class="post-header">
+                    <h1>How we fixed PSR on T2 Macs</h1>
+                    <div class="post-meta">
+                        <time datetime="2026-08-29">29 Aug 2026</time>
+                        <span class="dot"></span>
+                        <span>Alexander Fischer</span>
+                        <span class="post-tag">graphics</span>
+                        <span class="post-tag">power</span>
+                        <span class="post-tag">upstream</span>
+                    </div>
+                    <p class="post-lead">A macOS display trace revealed the sink-specific sequence needed to enable Panel Self Refresh, reduce idle power and reach package C10 on T2 Macs.</p>
+                </header>
+
+                <p>This did not start as a display problem.</p>
+<p>I was experimenting with deep package C-states on a T2 Mac running Linux. Even when the machine was completely idle, it spent much less time in deep sleep states than I expected. This is where the journey began.</p>
+<p>After testing a few possible blockers, I eventually traced part of the problem back to the display pipeline. As long as the GPU has to keep sending the same image to the panel, parts of the display engine and memory cannot fully go to sleep.</p>
+<p>That is exactly what PSR (Panel Self Refresh) is supposed to solve.</p>
+<h2 id="why-psr-was-disabled">Why PSR was disabled<a class="headerlink" href="#why-psr-was-disabled">#</a></h2>
+<p>PSR lets the display panel keep the current image in its own memory. If nothing changes on screen, the GPU can stop sending the same frame again and again.</p>
+<p>On T2 Macs, macOS already uses PSR, but Linux did not.</p>
+<p>I did some research and found an old driver commit: <a href="https://github.com/torvalds/linux/commit/1035f4a65f58407951d8d2f54c289c2b252e499c"><code>1035f4a65f58</code></a> ("drm/i915: Disable PSR in Apple panels"). The commit explained that i915 did not yet support PSR on Apple panels.</p>
+<p>Eight years later, that restriction was still there, so I simply removed it and tried again. :)</p>
+<p>The panel reported PSR support and the Intel driver enabled the standard PSR register. Unfortunately, the panel never actually captured the current frame. The result was blinking and flickering. Sometimes the display stayed black for a moment before recovering. Or, as @deqrocks discovered even earlier than me: "it turned my bedroom into a 90ies discotheque."</p>
+<p>Clearly, something was missing. Apple always "thinks differently."</p>
+<h2 id="looking-at-macos">Looking at macOS<a class="headerlink" href="#looking-at-macos">#</a></h2>
+<p>There was no public documentation for the Apple display controller, but macOS already knew how to make PSR work.</p>
+<p>So I booted macOS 15.7.7 and traced the display communication with DTrace.</p>
+<p>The trace showed an Apple display controller called a Banksia TCON. More importantly, macOS was sending a few vendor-specific commands that Linux did not know about.</p>
+<p>The important sequence looked like this:</p>
+<div class="code-wrap"><div class="highlight"><pre><span></span><code>DPCD 0x321 = 0x3c
+DPCD 0x4d2 = 0x01
+DPCD 0x4d1 = 0x03
+DPCD 0x170 = 0x01
+... and a few seconds later ...
+DPCD 0x4d4 = 0x01
+</code></pre></div><button class="copy-btn" type="button" onclick="copyBlock(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div>
+
+<p>The last write was the key. Register <code>0x4d4</code> tells the TCON to capture the current frame. Without that step, PSR is enabled from the GPU side, but the panel has no frame to refresh.</p>
+<p>That explained the blinking almost perfectly, but it did not solve the issue by itself. Linux normally enables CRC verification, while macOS leaves it disabled on these panels.</p>
+<p>The working sequence was surprisingly simple:</p>
+<ol>
+<li>Send the Apple setup commands.</li>
+<li>Enable PSR without CRC verification.</li>
+<li>Trigger the frame capture through register <code>0x4d4</code>.</li>
+</ol>
+<h2 id="the-linux-patch">The Linux patch<a class="headerlink" href="#the-linux-patch">#</a></h2>
+<p>I added this sequence to the existing i915 PSR path. The matching is intentionally strict: the quirk is only enabled when the display is internal eDP, the panel reports Apple's OUI <code>00:10:fa</code>, and the machine contains an Apple T2 bridge controller. It may work on other Macs too, but those systems are untested, so the patch deliberately leaves them unchanged.</p>
+<h2 id="the-result">The result<a class="headerlink" href="#the-result">#</a></h2>
+<p>With the patch, PSR now starts automatically at boot and still works after suspend and resume.</p>
+<p>On my MacBookPro16,2, I measured about 0.5 W less idle power. More importantly, our T2 Macs can now reach <strong>package C10 with the display active</strong>, which was the reason I started looking at PSR in the first place.</p>
+<p>We tested the fix in the KAIT2EN community on five machines with four different panel device IDs. All of them entered PSR successfully and kept working after suspend and resume without panel errors or flickering.</p>
+<p>The patch has now been <a href="https://lore.kernel.org/all/20260829161622.11396-1-alexander.fischer@kait2en.org/">submitted to the i915 maintainers</a>.</p>
+            </article>
+
+            <nav class="post-nav">
+                <a href="../blog/thunderbolterella.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+ Thunderbolterella Swallowed the Whole Apple</a>
+            </nav>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="../img/kait2en-wordmark.png" alt="KAIT2EN Fedora">
+                </div>
+
+                <div class="footer-links">
+                    <a href="https://github.com/kaiT2en/KaiT2en-Fedora" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+
+                        GitHub
+                    </a>
+                    <a href="https://github.com/kaiT2en/KaiT2en-Fedora/issues" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><rect x="8" y="6" width="8" height="14" rx="4"/><path d="M19 7l-3 2M5 7l3 2M19 20l-3-2M5 20l3-2M22 13h-6M8 13H2"/></svg>
+
+                        Issues
+                    </a>
+                    <a href="../documentation.html">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+
+                        Documentation
+                    </a>
+                </div>
+
+                <div class="footer-support">
+                    <span>Join the community</span>
+                    <div class="support-links">
+                        <a href="https://discord.gg/AGfjRk4ydj" target="_blank" rel="noopener" class="support-btn discord">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.317 4.369a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.445.865-.608 1.249a18.27 18.27 0 0 0-5.487 0 12.51 12.51 0 0 0-.617-1.25.077.077 0 0 0-.079-.036A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .079.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127c-.598.35-1.22.645-1.873.891a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.056c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.096 2.157 2.42 0 1.332-.955 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.332-.946 2.418-2.157 2.418z"/></svg>
+
+                            Discord
+                        </a>
+                        <a href="https://matrix.to/#/%23kait2en:matrix.org" target="_blank" rel="noopener" class="support-btn matrix">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M6.5 3H3v18h3.5"/><path d="M17.5 3H21v18h-3.5"/><path d="M8 16.5v-8"/><path d="M8 10.6c.4-1.4 1.4-2.1 2.5-2.1 1.2 0 2 .9 2 2.3v5.7"/><path d="M12.5 10.6c.4-1.4 1.4-2.1 2.5-2.1 1.2 0 2 .9 2 2.3v5.7"/></svg>
+
+                            Matrix
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>MIT · KAIT2EN Fedora</p>
+                <p>Made for T2 Macs that deserve a current kernel</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Navigation Modal -->
+    <div id="nav-modal" class="nav-modal">
+        <div class="nav-modal-header">
+            <a href="../index.html" class="nav-logo" aria-label="KAIT2EN Fedora">
+                <img src="../img/kait2en-wordmark.png" alt="KAIT2EN Fedora">
+            </a>
+            <button class="nav-modal-close" onclick="closeMenu()" aria-label="Close menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+        <div class="nav-modal-content">
+            <div class="nav-modal-section">
+                <h4>Navigation</h4>
+                <div class="nav-modal-links">
+                    <a href="../index.html">Home</a>
+                    <a href="../documentation.html">Documentation</a>
+                    <a href="../blog.html">Blog</a>
+                    <a href="https://github.com/kaiT2en/KaiT2en-Fedora" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+
+                        GitHub
+                    </a>
+                    <a href="https://discord.gg/AGfjRk4ydj" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20.317 4.369a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.445.865-.608 1.249a18.27 18.27 0 0 0-5.487 0 12.51 12.51 0 0 0-.617-1.25.077.077 0 0 0-.079-.036A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .079.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127c-.598.35-1.22.645-1.873.891a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.056c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.096 2.157 2.42 0 1.332-.955 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.332-.946 2.418-2.157 2.418z"/></svg>
+
+                        Discord
+                    </a>
+                    <a href="https://matrix.to/#/%23kait2en:matrix.org" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M6.5 3H3v18h3.5"/><path d="M17.5 3H21v18h-3.5"/><path d="M8 16.5v-8"/><path d="M8 10.6c.4-1.4 1.4-2.1 2.5-2.1 1.2 0 2 .9 2 2.3v5.7"/><path d="M12.5 10.6c.4-1.4 1.4-2.1 2.5-2.1 1.2 0 2 .9 2 2.3v5.7"/></svg>
+
+                        Matrix
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../main.js"></script>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+        <img id="lightbox-img" src="" alt="">
+    </div>
+</body>
+</html>
