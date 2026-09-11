@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAIT2EN is through the door - KAIT2EN Fedora</title>
+    <meta name="description" content="This is a copy of the text I wrote on Reddit when I released KaiT2EN in July 2026">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="KAIT2EN is through the door - KAIT2EN Fedora">
+    <meta property="og:description" content="This is a copy of the text I wrote on Reddit when I released KaiT2EN in July 2026">
+    <meta property="og:url" content="https://kait2en.org/blog/kait2en-is-through-the-door.html">
+    <meta property="og:image" content="https://kait2en.org/img/og-image.png">
+    <meta property="og:site_name" content="KAIT2EN Fedora">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="KAIT2EN is through the door - KAIT2EN Fedora">
+    <meta name="twitter:description" content="This is a copy of the text I wrote on Reddit when I released KaiT2EN in July 2026">
+    <meta name="twitter:image" content="https://kait2en.org/img/og-image.png">
+
+    <link rel="canonical" href="https://kait2en.org/blog/kait2en-is-through-the-door.html">
+    <link rel="alternate" type="application/rss+xml" title="KAIT2EN Fedora blog" href="../feed.xml">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../img/favicon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <!-- Grid Background -->
+    <div class="grid-bg"></div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo" aria-label="KAIT2EN Fedora">
+                <img src="../img/kait2en-wordmark.png" alt="KAIT2EN Fedora">
+            </a>
+            <button class="nav-burger" onclick="toggleMenu()" aria-label="Open menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <line x1="3" y1="12" x2="21" y2="12"/>
+                    <line x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+            </button>
+            <div class="nav-links" id="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../documentation.html">Documentation</a>
+                <a href="../blog.html">Blog</a>
+                <a href="https://github.com/kaiT2en/KaiT2en-Fedora" target="_blank" rel="noopener" class="nav-github">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+
+                    GitHub
+                </a>
+                <a href="https://discord.gg/AGfjRk4ydj" target="_blank" rel="noopener" class="nav-discord">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20.317 4.369a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.445.865-.608 1.249a18.27 18.27 0 0 0-5.487 0 12.51 12.51 0 0 0-.617-1.25.077.077 0 0 0-.079-.036A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .079.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127c-.598.35-1.22.645-1.873.891a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.056c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.096 2.157 2.42 0 1.332-.955 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.332-.946 2.418-2.157 2.418z"/></svg>
+
+                    Discord
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-container page-container--top">
+        <aside class="page-sidebar">
+            <h2 class="page-title">Blog</h2>
+            <div class="sidebar-posts">
+                <a href="../blog/how-we-fixed-psr-on-t2-macs.html">
+                    <span class="sidebar-post-date">29 Aug 2026</span>
+                    How we fixed PSR on T2 Macs
+                </a>
+                <a href="../blog/thunderbolterella.html">
+                    <span class="sidebar-post-date">15 Aug 2026</span>
+                    Thunderbolterella Swallowed the Whole Apple
+                </a>
+                <a href="../blog/enfant-terrible.html">
+                    <span class="sidebar-post-date">14 Aug 2026</span>
+                    Enfant Terrible
+                </a>
+                <a href="../blog/hybrid-graphics-upstream.html">
+                    <span class="sidebar-post-date">12 Aug 2026</span>
+                    The MacBookPro15,1 finally has hybrid graphics
+                </a>
+                <a href="../blog/where-did-the-watts-go.html">
+                    <span class="sidebar-post-date">11 Aug 2026</span>
+                    Where did the watts go?
+                </a>
+                <a href="../blog/more-than-a-fan-controller.html">
+                    <span class="sidebar-post-date">10 Aug 2026</span>
+                    More than a fan controller
+                </a>
+                <a href="../blog/the-navi-rabbit-hole.html">
+                    <span class="sidebar-post-date">06 Aug 2026</span>
+                    The Navi rabbit hole
+                </a>
+                <a href="../blog/three-watts-and-a-dead-usb-port.html">
+                    <span class="sidebar-post-date">02 Aug 2026</span>
+                    Three watts and a dead USB port
+                </a>
+                <a href="../blog/the-small-things-you-touch-every-day.html">
+                    <span class="sidebar-post-date">29 Jul 2026</span>
+                    The small things you touch every day
+                </a>
+                <a href="../blog/making-the-speakers-sound-like-speakers.html">
+                    <span class="sidebar-post-date">27 Jul 2026</span>
+                    Making the speakers sound like speakers
+                </a>
+                <a href="../blog/the-resume-that-took-a-minute.html">
+                    <span class="sidebar-post-date">24 Jul 2026</span>
+                    The resume that took a minute
+                </a>
+                <a href="../blog/kait2en-is-through-the-door.html" class="active">
+                    <span class="sidebar-post-date">14 Jul 2026</span>
+                    KAIT2EN is through the door
+                </a>
+            </div>
+            <a href="../blog.html" class="btn btn-secondary">All posts</a>
+        </aside>
+
+        <main class="page-content">
+            <article>
+                <header class="post-header">
+                    <h1>KAIT2EN is through the door</h1>
+                    <div class="post-meta">
+                        <time datetime="2026-07-14">14 Jul 2026</time>
+                        <span class="dot"></span>
+                        <span>Andre Eikmeyer</span>
+                        <span class="post-tag">announcements</span>
+                    </div>
+                    <p class="post-lead">This is a copy of the text I wrote on Reddit when I released KaiT2EN in July 2026</p>
+                </header>
+
+                <p><em>This is a copy of the text I wrote on Reddit in July 2026 when KAIT2EN was
+releeased and this website didn't yet exist. Keeping it here for historical
+reasons.</em> <em>This is the link to the original post:
+<a href="https://www.reddit.com/r/linux_on_mac/comments/1uvjn0t/comment/p37dcmd/?screen_view_count=2&amp;ext-referrer=DIRECT">Reddit</a></em></p>
+<p>Some of you may know me as "Deqrocks" from the T2 Linux Discord server. And you
+may also know I have been very active over the past months with contributing to
+the community and codebase.</p>
+<p>So I started this Fedora project with another guy from Germany ("4f1sh3r" on
+Discord). We called it "KaiT2en", which refers to the Japanese word kaizen,
+which stands for constant little improvements. A bit cheesy, but that is what
+the idea is about.</p>
+<p>Initially, we started this because we were overwhelmed by the variety of T2
+Linux distros and the amount of repos and quirks needed to make things work - on
+I believe 16 different T2 Mac models? In effect, when I offered code changes and
+wanted them tested, I had to deal with not directly comparable results and a lot
+of distro-specific "noise".</p>
+<p>Now, Asahi has shown the value of concentrating development around a single
+reference platform. It's not so much about my personal opinion or wanting to
+step into Asahi's big footsteps (never ever I was competent enough). It's just
+my view as a dev from a practical standpoint. We have made so much progress in
+the last months with KaiT2en on three Macbooks. Because we could finally focus.</p>
+<p>Eventually, the project became useful enough that we decided to open it up to
+other users and developers here on reddit.</p>
+<p>I gotta be careful here: Mind you, this is not a try to bash T2 Linux. We are
+part of this community and we love it. Also our work is based on T2 Linux code.
+We don't want to take credit from their work. What we want is offering a
+transparent concept in exchange for your engagement. And if Linus so will -
+upstream code.</p>
+<p>We are talking about 8 to 6 year old devices here. Most devs from back in 2018
+to 2020 have moved on to Apple Silicon or other things in life. Developing Linux
+kernel modules for T2 Macs is hard work because of reverse engineering.
+Upstreaming to Linus is also hard, because Apple's stuff is out of the ordinary
+for kernel maintainers, which are meticulous by nature. I believe we are a PITA
+for them whenever we show up on Lore.</p>
+<p>T2linux also can't maintain their distros forever. It takes time, money, blood,
+sweat, tears, you name it... to keep that going over the years. And they did. Oh
+boy. They did their job well...</p>
+<p>OK, so here is our stuff. It is, as we believe, a good concept. The docs in the
+repo should explain everything you want to know:
+<a href="https://github.com/kaiT2en/KaiT2en-Fedora">https://github.com/kaiT2en/KaiT2en-Fedora</a></p>
+<p>If you decide on joining the project, here is a Discord link: <a href="https://discord.gg/AGfjRk4ydj">https://discord.gg/AGfjRk4ydj</a></p>
+            </article>
+
+            <nav class="post-nav">
+                <span class="spacer"></span>
+                <a href="../blog/the-resume-that-took-a-minute.html">The resume that took a minute <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+</a>
+            </nav>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="../img/kait2en-wordmark.png" alt="KAIT2EN Fedora">
+                </div>
+
+                <div class="footer-links">
+                    <a href="https://github.com/kaiT2en/KaiT2en-Fedora" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+
+                        GitHub
+                    </a>
+                    <a href="https://github.com/kaiT2en/KaiT2en-Fedora/issues" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><rect x="8" y="6" width="8" height="14" rx="4"/><path d="M19 7l-3 2M5 7l3 2M19 20l-3-2M5 20l3-2M22 13h-6M8 13H2"/></svg>
+
+                        Issues
+                    </a>
+                    <a href="../documentation.html">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+
+                        Documentation
+                    </a>
+                </div>
+
+                <div class="footer-support">
+                    <span>Join the community</span>
+                    <div class="support-links">
+                        <a href="https://discord.gg/AGfjRk4ydj" target="_blank" rel="noopener" class="support-btn discord">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.317 4.369a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.445.865-.608 1.249a18.27 18.27 0 0 0-5.487 0 12.51 12.51 0 0 0-.617-1.25.077.077 0 0 0-.079-.036A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .079.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127c-.598.35-1.22.645-1.873.891a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.056c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.096 2.157 2.42 0 1.332-.955 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.332-.946 2.418-2.157 2.418z"/></svg>
+
+                            Discord
+                        </a>
+                        <a href="https://matrix.to/#/%23kait2en:matrix.org" target="_blank" rel="noopener" class="support-btn matrix">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M6.5 3H3v18h3.5"/><path d="M17.5 3H21v18h-3.5"/><path d="M8 16.5v-8"/><path d="M8 10.6c.4-1.4 1.4-2.1 2.5-2.1 1.2 0 2 .9 2 2.3v5.7"/><path d="M12.5 10.6c.4-1.4 1.4-2.1 2.5-2.1 1.2 0 2 .9 2 2.3v5.7"/></svg>
+
+                            Matrix
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>MIT · KAIT2EN Fedora</p>
+                <p>Made for T2 Macs that deserve a current kernel</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Navigation Modal -->
+    <div id="nav-modal" class="nav-modal">
+        <div class="nav-modal-header">
+            <a href="../index.html" class="nav-logo" aria-label="KAIT2EN Fedora">
+                <img src="../img/kait2en-wordmark.png" alt="KAIT2EN Fedora">
+            </a>
+            <button class="nav-modal-close" onclick="closeMenu()" aria-label="Close menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+        <div class="nav-modal-content">
+            <div class="nav-modal-section">
+                <h4>Navigation</h4>
+                <div class="nav-modal-links">
+                    <a href="../index.html">Home</a>
+                    <a href="../documentation.html">Documentation</a>
+                    <a href="../blog.html">Blog</a>
+                    <a href="https://github.com/kaiT2en/KaiT2en-Fedora" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+
+                        GitHub
+                    </a>
+                    <a href="https://discord.gg/AGfjRk4ydj" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20.317 4.369a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.445.865-.608 1.249a18.27 18.27 0 0 0-5.487 0 12.51 12.51 0 0 0-.617-1.25.077.077 0 0 0-.079-.036A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .079.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127c-.598.35-1.22.645-1.873.891a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.056c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.096 2.157 2.42 0 1.332-.955 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.332-.946 2.418-2.157 2.418z"/></svg>
+
+                        Discord
+                    </a>
+                    <a href="https://matrix.to/#/%23kait2en:matrix.org" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M6.5 3H3v18h3.5"/><path d="M17.5 3H21v18h-3.5"/><path d="M8 16.5v-8"/><path d="M8 10.6c.4-1.4 1.4-2.1 2.5-2.1 1.2 0 2 .9 2 2.3v5.7"/><path d="M12.5 10.6c.4-1.4 1.4-2.1 2.5-2.1 1.2 0 2 .9 2 2.3v5.7"/></svg>
+
+                        Matrix
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../main.js"></script>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+        <img id="lightbox-img" src="" alt="">
+    </div>
+</body>
+</html>
