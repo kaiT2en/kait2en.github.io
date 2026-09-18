@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enfant Terrible - KAIT2EN Fedora</title>
+    <meta name="description" content="Fedora rebuilt the initramfs, four T2 modules quietly disappeared and an encrypted MacBook was left with a passphrase prompt it could not type into.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Enfant Terrible - KAIT2EN Fedora">
+    <meta property="og:description" content="Fedora rebuilt the initramfs, four T2 modules quietly disappeared and an encrypted MacBook was left with a passphrase prompt it could not type into.">
+    <meta property="og:url" content="https://kait2en.org/blog/enfant-terrible.html">
+    <meta property="og:image" content="https://kait2en.org/img/og-image.png">
+    <meta property="og:site_name" content="KAIT2EN Fedora">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Enfant Terrible - KAIT2EN Fedora">
+    <meta name="twitter:description" content="Fedora rebuilt the initramfs, four T2 modules quietly disappeared and an encrypted MacBook was left with a passphrase prompt it could not type into.">
+    <meta name="twitter:image" content="https://kait2en.org/img/og-image.png">
+
+    <link rel="canonical" href="https://kait2en.org/blog/enfant-terrible.html">
+    <link rel="alternate" type="application/rss+xml" title="KAIT2EN Fedora blog" href="../feed.xml">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../img/favicon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <!-- Grid Background -->
+    <div class="grid-bg"></div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo" aria-label="KAIT2EN Fedora">
+                <img src="../img/kait2en-wordmark.png" alt="KAIT2EN Fedora">
+            </a>
+            <button class="nav-burger" onclick="toggleMenu()" aria-label="Open menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <line x1="3" y1="12" x2="21" y2="12"/>
+                    <line x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+            </button>
+            <div class="nav-links" id="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../documentation.html">Documentation</a>
+                <a href="../blog.html">Blog</a>
+                <a href="https://github.com/kaiT2en/KaiT2en-Fedora" target="_blank" rel="noopener" class="nav-github">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+
+                    GitHub
+                </a>
+                <a href="https://discord.gg/AGfjRk4ydj" target="_blank" rel="noopener" class="nav-discord">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20.317 4.369a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.445.865-.608 1.249a18.27 18.27 0 0 0-5.487 0 12.51 12.51 0 0 0-.617-1.25.077.077 0 0 0-.079-.036A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .079.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127c-.598.35-1.22.645-1.873.891a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.056c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.096 2.157 2.42 0 1.332-.955 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.332-.946 2.418-2.157 2.418z"/></svg>
+
+                    Discord
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-container page-container--top">
+        <aside class="page-sidebar">
+            <h2 class="page-title">Blog</h2>
+            <div class="sidebar-posts">
+                <a href="../blog/how-we-fixed-psr-on-t2-macs.html">
+                    <span class="sidebar-post-date">29 Aug 2026</span>
+                    How we fixed PSR on T2 Macs
+                </a>
+                <a href="../blog/thunderbolterella.html">
+                    <span class="sidebar-post-date">15 Aug 2026</span>
+                    Thunderbolterella Swallowed the Whole Apple
+                </a>
+                <a href="../blog/enfant-terrible.html" class="active">
+                    <span class="sidebar-post-date">14 Aug 2026</span>
+                    Enfant Terrible
+                </a>
+                <a href="../blog/hybrid-graphics-upstream.html">
+                    <span class="sidebar-post-date">12 Aug 2026</span>
+                    The MacBookPro15,1 finally has hybrid graphics
+                </a>
+                <a href="../blog/where-did-the-watts-go.html">
+                    <span class="sidebar-post-date">11 Aug 2026</span>
+                    Where did the watts go?
+                </a>
+                <a href="../blog/more-than-a-fan-controller.html">
+                    <span class="sidebar-post-date">10 Aug 2026</span>
+                    More than a fan controller
+                </a>
+                <a href="../blog/the-navi-rabbit-hole.html">
+                    <span class="sidebar-post-date">06 Aug 2026</span>
+                    The Navi rabbit hole
+                </a>
+                <a href="../blog/three-watts-and-a-dead-usb-port.html">
+                    <span class="sidebar-post-date">02 Aug 2026</span>
+                    Three watts and a dead USB port
+                </a>
+                <a href="../blog/the-small-things-you-touch-every-day.html">
+                    <span class="sidebar-post-date">29 Jul 2026</span>
+                    The small things you touch every day
+                </a>
+                <a href="../blog/making-the-speakers-sound-like-speakers.html">
+                    <span class="sidebar-post-date">27 Jul 2026</span>
+                    Making the speakers sound like speakers
+                </a>
+                <a href="../blog/the-resume-that-took-a-minute.html">
+                    <span class="sidebar-post-date">24 Jul 2026</span>
+                    The resume that took a minute
+                </a>
+                <a href="../blog/kait2en-is-through-the-door.html">
+                    <span class="sidebar-post-date">14 Jul 2026</span>
+                    KAIT2EN is through the door
+                </a>
+            </div>
+            <a href="../blog.html" class="btn btn-secondary">All posts</a>
+        </aside>
+
+        <main class="page-content">
+            <article>
+                <header class="post-header">
+                    <h1>Enfant Terrible</h1>
+                    <div class="post-meta">
+                        <time datetime="2026-08-14">14 Aug 2026</time>
+                        <span class="dot"></span>
+                        <span>Andre Eikmeyer</span>
+                        <span class="post-tag">input</span>
+                        <span class="post-tag">installer</span>
+                        <span class="post-tag">debugging</span>
+                    </div>
+                    <p class="post-lead">Fedora rebuilt the initramfs, four T2 modules quietly disappeared and an encrypted MacBook was left with a passphrase prompt it could not type into.</p>
+                </header>
+
+                <p>Disk encryption has one fairly strict user-interface requirement: a keyboard.</p>
+<p>That sounds manageable until the keyboard itself lives behind Apple's T2 and
+needs four out-of-tree modules before Linux can see it:</p>
+<div class="code-wrap"><div class="highlight"><pre><span></span><code>t2bce_dma -&gt; t2bce_core -&gt; t2bce_vhci -&gt; t2hid
+</code></pre></div><button class="copy-btn" type="button" onclick="copyBlock(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div>
+
+<p>If those modules are available after the root filesystem has mounted,
+everything is fine. If the root filesystem is encrypted: meh!</p>
+<p>KAIT2EN did not officially support drive encryption yet. We didn't care
+because we don't use it ourselves (should I say that publicly?).</p>
+<h2 id="we-officially-dont-ship-with-issues">We officially don't ship with issues<a class="headerlink" href="#we-officially-dont-ship-with-issues">#</a></h2>
+<p>Our guided installer already forced the T2 input stack into its transition
+initramfs. The installed system booted, the internal keyboard worked at the
+LUKS prompt and everybody went home happy.</p>
+<p>Then @Salvo installed software, Fedora pulled updates and Dracut rebuilt the image.
+The next boot still displayed the passphrase prompt. But the keyboard was a goner.</p>
+<p>This picture was wonderfully unhelpful. Thank you anyways:</p>
+<figure>
+  <img src="../img/blog/luks.webp" alt="MacBook Pro showing the KAIT2EN LUKS passphrase prompt while its internal keyboard is unavailable">
+  <figcaption>The passphrase prompt was ready. The keyboard directly in front of it was not.</figcaption>
+</figure>
+
+<p>So no <code>t2bce_dma</code>, no <code>t2bce_core</code>, no <code>t2bce_vhci</code>, no <code>t2hid</code>. Just no drivers.</p>
+<p>So he was left with a Fedora that wouldn't boot and also he had no USB keyboard.
+If he had, it would be as simple as entering the password and drop this into terminal:</p>
+<div class="code-wrap"><div class="highlight"><pre><span></span><code>echo "force_drivers+=\" t2bce_dma t2bce_core t2bce_vhci t2hid\"" | sudo tee /etc/dracut.conf.d/t2linux-modules.conf
+</code></pre></div><button class="copy-btn" type="button" onclick="copyBlock(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div>
+
+<p>@Salvo had the brilliant idea of chroot with our Live USB, while I was still
+scratching my head and had to google if that would work at all. Because of my
+missing experience with drive encryption. But @Salvo then showed me it actually
+does. And to be fair: We have @4f1sh3r - 🔱 God of Install for that.
+Who was not available, because he had to do "real work and earn money".</p>
+<p>So I was tempted to say "I don't know, I don't care, not my job". But well...</p>
+<p>Anyways, after @Salvo chrooted and dropped the command everything was fine. He
+told Claude to look at the issue. And Claude generated a helper script that was
+going to reapply the workaround after every update and before shutdown.
+Understandable, but again a perfect example for:</p>
+<p><code>there is a distinct difference in making broken things work and fixing things</code></p>
+<h2 id="dracut-my-ass">Dracut my ass<a class="headerlink" href="#dracut-my-ass">#</a></h2>
+<p>@Th0masL was the first to pin down the missing modules and propose a fix.
+@4f1sh3r then found the long-term part of the problem: plain host-only Dracut
+did not include our modules from <code>/lib/modules/.../extra/</code>, and every kernel
+update runs Dracut again. Rebuilding the image once was therefore not a fix.
+It was a bandaid until the next Fedora update.</p>
+<p>The structural solution is a Dracut drop-in:</p>
+<div class="code-wrap"><div class="highlight"><pre><span></span><code># Managed by scripts/fedora/rebuild-initramfs.sh
+force_drivers+=" t2bce_dma t2bce_core t2bce_vhci t2hid "
+</code></pre></div><button class="copy-btn" type="button" onclick="copyBlock(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div>
+
+<p><code>force_drivers</code> does two jobs. It puts the modules into every future initramfs
+and adds <code>rd.driver.pre</code> entries so they load before udev and before the LUKS
+prompt.</p>
+<h2 id="enfant-terrible">Enfant terrible<a class="headerlink" href="#enfant-terrible">#</a></h2>
+<p>@Th0masL came at the problem from a DevOps and SRE background and used
+Claude to help work through unfamiliar kernel territory. The first PR tried to make
+every failure impossible. Temporary images, free-space checks, module checks,
+image verification and test plumbing. All well-intentioned but it also turned one
+line of Dracut configuration into changes spread over several files.</p>
+<p>Even worse, the final verification could stop the main KAIT2EN installer after the
+new initramfs had already been written. The suspend service and every app still
+waiting later in the installer would simply never be installed. Users would be
+left with half a setup and no useful explanation of what to do.</p>
+<p>At that point the review became more expensive than writing the fix. My tempers
+were not exactly improved by an inbox filling with another revision every few
+minutes for days. I do like @Th0masL. He tried to help from the first second he joined
+our Discord. Opposite to me a very forgiving and patient person.
+I had to remind him several times to not use AI, just send logs and file an issue
+instead of PRing refactories for things that can be solved with three lines of code.</p>
+<p>I closed the PR very impolitely short before @4f1sh3r was about to merge.</p>
+<p>I did that because the PR was compromising the main installer in the first place.
+Second was that I feel a deep anger about AI fooling people and wasting our
+precious lifetime. I am not an AI hater. I use it myself where I find I can learn
+from it. But what happened here was that AI took over. One guy annoyed of
+PRing over and over again because we didn't accept. And the other guy tired
+of reviewing all those dozens of lines of slopped code. And the issue was
+obvious:</p>
+<div class="code-wrap"><div class="highlight"><pre><span></span><code>listing="$(lsinitrd "$INITRAMFS")"
+for module in "${INPUT_MODULES[@]}"; do
+ [[ "$listing" == *"/$module.ko"* ]] ||
+  fail "the rebuilt initramfs for $KVER is missing $module"
+</code></pre></div><button class="copy-btn" type="button" onclick="copyBlock(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div>
+
+<p>Translated into plain text that means: "I don't know the context and I don't care!"</p>
+<p>That is not a story about somebody being stupid for using AI. @Th0masL found the
+bug, reproduced it, prepared a fix and kept testing after a fairly direct
+review. Good intentions do matter. So does knowing when generated defensive
+code no longer fits the program around it.</p>
+<p>So in the end it was 7 lines of code to fix the issue. And we spend days reviewing
+code. I lost my contenance again, being the enfant terrible.</p>
+<h2 id="7-lines-of-code">7 lines of code<a class="headerlink" href="#7-lines-of-code">#</a></h2>
+<p>The result went onto a test branch. @Th0masL pulled it and rebuilt his initramfs:</p>
+<div class="code-wrap"><div class="highlight"><pre><span></span><code>[kait2en] rebuilding initramfs for 7.1.7-200.fc44.x86_64
+[kait2en] initramfs rebuilt
+</code></pre></div><button class="copy-btn" type="button" onclick="copyBlock(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div>
+
+<p>The image then contained all four modules and the corresponding early-load
+instructions:</p>
+<div class="code-wrap"><div class="highlight"><pre><span></span><code>t2bce_core.ko.xz
+t2bce_dma.ko.xz
+t2bce_vhci.ko.xz
+t2hid.ko.xz
+rd.driver.pre=t2bce_dma
+rd.driver.pre=t2bce_core
+rd.driver.pre=t2bce_vhci
+rd.driver.pre=t2hid
+</code></pre></div><button class="copy-btn" type="button" onclick="copyBlock(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div>
+
+<p>Ten minutes after taking over, we had the small structural fix we needed. More
+importantly, @Th0masL had already confirmed that it built the intended image.
+He found the hole first, and without that report we would still be telling
+encrypted-disk users to find a USB keyboard.</p>
+<p>And later that evening:</p>
+<blockquote>
+<p><strong>Salvo#2812 [CO]</strong> — 22:33</p>
+<p>Tested the branch, rebuild completed clean. Verified with lsinitrd: t2bce_dma,
+t2bce_core, t2bce_vhci all present with rd.driver.pre entries. Rebooting to
+confirm keyboard/trackpad at LUKS now.</p>
+<p>Confirmed working — rebuilt with the test branch, lsinitrd showed all t2bce
+modules included, rebooted and keyboard/trackpad respond correctly at the LUKS
+prompt now. Thanks for the fix! 🎉</p>
+</blockquote>
+<p>Was I annoyed of AI slop? - Oh yes I was.
+But was @Th0masL right that there was an issue?
+Yup!</p>
+            </article>
+
+            <nav class="post-nav">
+                <a href="../blog/hybrid-graphics-upstream.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+ The MacBookPro15,1 finally has hybrid graphics</a>
+                <a href="../blog/thunderbolterella.html">Thunderbolterella Swallowed the Whole Apple <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+</a>
+            </nav>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="../img/kait2en-wordmark.png" alt="KAIT2EN Fedora">
+                </div>
+
+                <div class="footer-links">
+                    <a href="https://github.com/kaiT2en/KaiT2en-Fedora" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+
+                        GitHub
+                    </a>
+                    <a href="https://github.com/kaiT2en/KaiT2en-Fedora/issues" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><rect x="8" y="6" width="8" height="14" rx="4"/><path d="M19 7l-3 2M5 7l3 2M19 20l-3-2M5 20l3-2M22 13h-6M8 13H2"/></svg>
+
+                        Issues
+                    </a>
+                    <a href="../documentation.html">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+
+                        Documentation
+                    </a>
+                </div>
+
+                <div class="footer-support">
+                    <span>Join the community</span>
+                    <div class="support-links">
+                        <a href="https://discord.gg/AGfjRk4ydj" target="_blank" rel="noopener" class="support-btn discord">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.317 4.369a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.445.865-.608 1.249a18.27 18.27 0 0 0-5.487 0 12.51 12.51 0 0 0-.617-1.25.077.077 0 0 0-.079-.036A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .079.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127c-.598.35-1.22.645-1.873.891a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.056c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.096 2.157 2.42 0 1.332-.955 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.332-.946 2.418-2.157 2.418z"/></svg>
+
+                            Discord
+                        </a>
+                        <a href="https://matrix.to/#/%23kait2en:matrix.org" target="_blank" rel="noopener" class="support-btn matrix">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M6.5 3H3v18h3.5"/><path d="M17.5 3H21v18h-3.5"/><path d="M8 16.5v-8"/><path d="M8 10.6c.4-1.4 1.4-2.1 2.5-2.1 1.2 0 2 .9 2 2.3v5.7"/><path d="M12.5 10.6c.4-1.4 1.4-2.1 2.5-2.1 1.2 0 2 .9 2 2.3v5.7"/></svg>
+
+                            Matrix
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>MIT · KAIT2EN Fedora</p>
+                <p>Made for T2 Macs that deserve a current kernel</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Navigation Modal -->
+    <div id="nav-modal" class="nav-modal">
+        <div class="nav-modal-header">
+            <a href="../index.html" class="nav-logo" aria-label="KAIT2EN Fedora">
+                <img src="../img/kait2en-wordmark.png" alt="KAIT2EN Fedora">
+            </a>
+            <button class="nav-modal-close" onclick="closeMenu()" aria-label="Close menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+        <div class="nav-modal-content">
+            <div class="nav-modal-section">
+                <h4>Navigation</h4>
+                <div class="nav-modal-links">
+                    <a href="../index.html">Home</a>
+                    <a href="../documentation.html">Documentation</a>
+                    <a href="../blog.html">Blog</a>
+                    <a href="https://github.com/kaiT2en/KaiT2en-Fedora" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+
+                        GitHub
+                    </a>
+                    <a href="https://discord.gg/AGfjRk4ydj" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20.317 4.369a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.445.865-.608 1.249a18.27 18.27 0 0 0-5.487 0 12.51 12.51 0 0 0-.617-1.25.077.077 0 0 0-.079-.036A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .079.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127c-.598.35-1.22.645-1.873.891a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.056c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.096 2.157 2.42 0 1.332-.955 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.332-.946 2.418-2.157 2.418z"/></svg>
+
+                        Discord
+                    </a>
+                    <a href="https://matrix.to/#/%23kait2en:matrix.org" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M6.5 3H3v18h3.5"/><path d="M17.5 3H21v18h-3.5"/><path d="M8 16.5v-8"/><path d="M8 10.6c.4-1.4 1.4-2.1 2.5-2.1 1.2 0 2 .9 2 2.3v5.7"/><path d="M12.5 10.6c.4-1.4 1.4-2.1 2.5-2.1 1.2 0 2 .9 2 2.3v5.7"/></svg>
+
+                        Matrix
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../main.js"></script>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+        <img id="lightbox-img" src="" alt="">
+    </div>
+</body>
+</html>

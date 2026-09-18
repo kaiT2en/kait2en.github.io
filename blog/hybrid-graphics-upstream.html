@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The MacBookPro15,1 finally has hybrid graphics - KAIT2EN Fedora</title>
+    <meta name="description" content="The discrete GPU can finally sleep while Intel drives the display, saving roughly 12 watts without giving up PRIME offload or external monitors.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="The MacBookPro15,1 finally has hybrid graphics - KAIT2EN Fedora">
+    <meta property="og:description" content="The discrete GPU can finally sleep while Intel drives the display, saving roughly 12 watts without giving up PRIME offload or external monitors.">
+    <meta property="og:url" content="https://kait2en.org/blog/hybrid-graphics-upstream.html">
+    <meta property="og:image" content="https://kait2en.org/img/og-image.png">
+    <meta property="og:site_name" content="KAIT2EN Fedora">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The MacBookPro15,1 finally has hybrid graphics - KAIT2EN Fedora">
+    <meta name="twitter:description" content="The discrete GPU can finally sleep while Intel drives the display, saving roughly 12 watts without giving up PRIME offload or external monitors.">
+    <meta name="twitter:image" content="https://kait2en.org/img/og-image.png">
+
+    <link rel="canonical" href="https://kait2en.org/blog/hybrid-graphics-upstream.html">
+    <link rel="alternate" type="application/rss+xml" title="KAIT2EN Fedora blog" href="../feed.xml">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../img/favicon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <!-- Grid Background -->
+    <div class="grid-bg"></div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo" aria-label="KAIT2EN Fedora">
+                <img src="../img/kait2en-wordmark.png" alt="KAIT2EN Fedora">
+            </a>
+            <button class="nav-burger" onclick="toggleMenu()" aria-label="Open menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <line x1="3" y1="12" x2="21" y2="12"/>
+                    <line x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+            </button>
+            <div class="nav-links" id="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../documentation.html">Documentation</a>
+                <a href="../blog.html">Blog</a>
+                <a href="https://github.com/kaiT2en/KaiT2en-Fedora" target="_blank" rel="noopener" class="nav-github">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+
+                    GitHub
+                </a>
+                <a href="https://discord.gg/AGfjRk4ydj" target="_blank" rel="noopener" class="nav-discord">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20.317 4.369a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.445.865-.608 1.249a18.27 18.27 0 0 0-5.487 0 12.51 12.51 0 0 0-.617-1.25.077.077 0 0 0-.079-.036A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .079.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127c-.598.35-1.22.645-1.873.891a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.056c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.096 2.157 2.42 0 1.332-.955 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.332-.946 2.418-2.157 2.418z"/></svg>
+
+                    Discord
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-container page-container--top">
+        <aside class="page-sidebar">
+            <h2 class="page-title">Blog</h2>
+            <div class="sidebar-posts">
+                <a href="../blog/how-we-fixed-psr-on-t2-macs.html">
+                    <span class="sidebar-post-date">29 Aug 2026</span>
+                    How we fixed PSR on T2 Macs
+                </a>
+                <a href="../blog/thunderbolterella.html">
+                    <span class="sidebar-post-date">15 Aug 2026</span>
+                    Thunderbolterella Swallowed the Whole Apple
+                </a>
+                <a href="../blog/enfant-terrible.html">
+                    <span class="sidebar-post-date">14 Aug 2026</span>
+                    Enfant Terrible
+                </a>
+                <a href="../blog/hybrid-graphics-upstream.html" class="active">
+                    <span class="sidebar-post-date">12 Aug 2026</span>
+                    The MacBookPro15,1 finally has hybrid graphics
+                </a>
+                <a href="../blog/where-did-the-watts-go.html">
+                    <span class="sidebar-post-date">11 Aug 2026</span>
+                    Where did the watts go?
+                </a>
+                <a href="../blog/more-than-a-fan-controller.html">
+                    <span class="sidebar-post-date">10 Aug 2026</span>
+                    More than a fan controller
+                </a>
+                <a href="../blog/the-navi-rabbit-hole.html">
+                    <span class="sidebar-post-date">06 Aug 2026</span>
+                    The Navi rabbit hole
+                </a>
+                <a href="../blog/three-watts-and-a-dead-usb-port.html">
+                    <span class="sidebar-post-date">02 Aug 2026</span>
+                    Three watts and a dead USB port
+                </a>
+                <a href="../blog/the-small-things-you-touch-every-day.html">
+                    <span class="sidebar-post-date">29 Jul 2026</span>
+                    The small things you touch every day
+                </a>
+                <a href="../blog/making-the-speakers-sound-like-speakers.html">
+                    <span class="sidebar-post-date">27 Jul 2026</span>
+                    Making the speakers sound like speakers
+                </a>
+                <a href="../blog/the-resume-that-took-a-minute.html">
+                    <span class="sidebar-post-date">24 Jul 2026</span>
+                    The resume that took a minute
+                </a>
+                <a href="../blog/kait2en-is-through-the-door.html">
+                    <span class="sidebar-post-date">14 Jul 2026</span>
+                    KAIT2EN is through the door
+                </a>
+            </div>
+            <a href="../blog.html" class="btn btn-secondary">All posts</a>
+        </aside>
+
+        <main class="page-content">
+            <article>
+                <header class="post-header">
+                    <h1>The MacBookPro15,1 finally has hybrid graphics</h1>
+                    <div class="post-meta">
+                        <time datetime="2026-08-12">12 Aug 2026</time>
+                        <span class="dot"></span>
+                        <span>André Eikmeyer</span>
+                        <span class="post-tag">graphics</span>
+                        <span class="post-tag">upstream</span>
+                    </div>
+                    <p class="post-lead">The discrete GPU can finally sleep while Intel drives the display, saving roughly 12 watts without giving up PRIME offload or external monitors.</p>
+                </header>
+
+                <p>The MacBookPro15,1 normally boots Linux with its AMD GPU in charge of the
+display. It works, it is fast and it uses around 24 watts while doing almost
+nothing. Roughly half of that disappears when the discrete GPU is actually
+allowed to turn off.</p>
+<p>That missing half is why hybrid graphics mattered so much.</p>
+<p>With Intel as the primary GPU, the desktop runs on the integrated graphics and
+the AMD GPU can stay in D3cold. An application using <code>DRI_PRIME=1</code> wakes it on
+demand. An external monitor wakes it because the display outputs are connected
+there. Close the application or unplug the monitor and it goes back to sleep.</p>
+<p>That is how everyone expects a dual-GPU laptop to behave. It just took quite a
+lot of work to make this particular one agree.</p>
+<h2 id="turning-it-off-was-the-easy-part">Turning it off was the easy part<a class="headerlink" href="#turning-it-off-was-the-easy-part">#</a></h2>
+<p>Apple GMUX can cut power to the GPU. The hard part was getting the Polaris GPU
+back after that happened. The normal GMUX sequence left its PCI configuration
+space inaccessible. Following the additional link transitions exposed by the
+firmware made power-on reliable on both the 2018 and 2019 revisions.</p>
+<p>Before runtime switching was possible at all, AMDGPU also needed a reset quirk
+for this machine. Without it the GPU's SMU could remain dead after resume. That
+smaller foundation started with an idea and rough patch from <code>@FrederickGeek8</code>.
+I turned it into an upstream submission, and roughly one day later it was
+<a href="https://lore.kernel.org/all/20260722125734.6541-1-dev@deq.rocks/">merged upstream</a>
+before the larger hybrid series was ready.</p>
+<p>AMDGPU still had to learn that GMUX is a valid runtime power method. Linux
+already understood other laptop power schemes, just not this one.</p>
+<p>The missing GMUX power-on sequence was developed with <code>@byte</code>. It became the
+platform side of the final series and the bit that made the Polaris GPU return
+reliably instead of disappearing behind inaccessible PCI configuration space.</p>
+<p>Then system suspend woke the powered-off GPU again for its HDMI audio
+function. That was the final surprise: the graphics fix needed a small ALSA
+change so an audio device attached to a GPU that is physically off can remain
+off during suspend.</p>
+<p>Three subsystems, one feature.</p>
+<h2 id="making-it-convenient-to-use">Making it convenient to use<a class="headerlink" href="#making-it-convenient-to-use">#</a></h2>
+<p>The firmware preference for the boot GPU lives in an Apple NVRAM variable.
+Expecting users to discover and write that variable by hand would turn a
+working kernel feature into trivia for people who already know the answer.</p>
+<p>KAIT2EN therefore installs <strong>T2 Hybrid GPU Control</strong> on the 15,1. It selects
+the integrated boot GPU, shows whether the discrete GPU is in DynOff or DynPwr
+and leaves ordinary PRIME offload to the desktop and applications.</p>
+<figure>
+  <div class="image-pair">
+    <img src="../img/blog/t2-hybrid-gpu-control.jpg" alt="T2 Hybrid GPU Control showing the discrete GPU awake in DynPwr">
+    <img src="../img/blog/hybrid-dyn-off.jpg" alt="T2 Hybrid GPU Control showing the discrete GPU asleep in DynOff">
+  </div>
+  <figcaption>The display stays on Intel in both cases. DynPwr means the AMD GPU is awake; DynOff means runtime PM has put it back to sleep.</figcaption>
+</figure>
+
+<p>The feature has been tested with repeated wakeups, suspend and resume, and a
+collection of Thunderbolt and USB-C displays. It is now our default path for
+this model.</p>
+<h2 id="upstream-is-where-it-should-live">Upstream is where it should live<a class="headerlink" href="#upstream-is-where-it-should-live">#</a></h2>
+<p>The downstream version requires KAIT2EN to rebuild parts of AMDGPU whenever
+Fedora updates the kernel. That is inconvenient for users and a maintenance
+job we do not want forever.</p>
+<p>The three-patch series has now been sent upstream to the platform, AMDGPU and
+ALSA maintainers. Review already improved the HDA integration and caught a PCI
+device lifecycle problem in the GMUX patch. It also produced several revisions
+in one afternoon, including one correction after we checked what Apple's ACPI
+methods really return instead of assuming.</p>
+<p>That process can look messy from outside. It is still better than carrying the
+same private kernel patch for years. The goal is a future Fedora kernel where
+the 15,1 simply has hybrid graphics, whether KAIT2EN is installed or not.</p>
+<p>The current series is available in the
+<a href="https://lore.kernel.org/all/20260812144750.36797-1-dev@deq.rocks/">kernel mailing list archive</a>.</p>
+<h2 id="phoronics-picked-it-up-the-same-day">Phoronics picked it up the same day<a class="headerlink" href="#phoronics-picked-it-up-the-same-day">#</a></h2>
+<p>Actually impressive how fast these guys are. And also the fact that they picked
+it up shows that hybrid graphics support on Apple MacBooks is a desperately
+wanted feature by users. Also I believe this will be an interesting find for all
+other muxed Macbooks like T1 etc.., Here is the link to the
+<a href="https://www.phoronix.com/news/Linux-2026-Patches-For-2018-MBP">Phoronics article</a></p>
+            </article>
+
+            <nav class="post-nav">
+                <a href="../blog/where-did-the-watts-go.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+ Where did the watts go?</a>
+                <a href="../blog/enfant-terrible.html">Enfant Terrible <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+</a>
+            </nav>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="../img/kait2en-wordmark.png" alt="KAIT2EN Fedora">
+                </div>
+
+                <div class="footer-links">
+                    <a href="https://github.com/kaiT2en/KaiT2en-Fedora" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+
+                        GitHub
+                    </a>
+                    <a href="https://github.com/kaiT2en/KaiT2en-Fedora/issues" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><rect x="8" y="6" width="8" height="14" rx="4"/><path d="M19 7l-3 2M5 7l3 2M19 20l-3-2M5 20l3-2M22 13h-6M8 13H2"/></svg>
+
+                        Issues
+                    </a>
+                    <a href="../documentation.html">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+
+                        Documentation
+                    </a>
+                </div>
+
+                <div class="footer-support">
+                    <span>Join the community</span>
+                    <div class="support-links">
+                        <a href="https://discord.gg/AGfjRk4ydj" target="_blank" rel="noopener" class="support-btn discord">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.317 4.369a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.445.865-.608 1.249a18.27 18.27 0 0 0-5.487 0 12.51 12.51 0 0 0-.617-1.25.077.077 0 0 0-.079-.036A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .079.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127c-.598.35-1.22.645-1.873.891a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.056c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.096 2.157 2.42 0 1.332-.955 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.332-.946 2.418-2.157 2.418z"/></svg>
+
+                            Discord
+                        </a>
+                        <a href="https://matrix.to/#/%23kait2en:matrix.org" target="_blank" rel="noopener" class="support-btn matrix">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M6.5 3H3v18h3.5"/><path d="M17.5 3H21v18h-3.5"/><path d="M8 16.5v-8"/><path d="M8 10.6c.4-1.4 1.4-2.1 2.5-2.1 1.2 0 2 .9 2 2.3v5.7"/><path d="M12.5 10.6c.4-1.4 1.4-2.1 2.5-2.1 1.2 0 2 .9 2 2.3v5.7"/></svg>
+
+                            Matrix
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>MIT · KAIT2EN Fedora</p>
+                <p>Made for T2 Macs that deserve a current kernel</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Navigation Modal -->
+    <div id="nav-modal" class="nav-modal">
+        <div class="nav-modal-header">
+            <a href="../index.html" class="nav-logo" aria-label="KAIT2EN Fedora">
+                <img src="../img/kait2en-wordmark.png" alt="KAIT2EN Fedora">
+            </a>
+            <button class="nav-modal-close" onclick="closeMenu()" aria-label="Close menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+        <div class="nav-modal-content">
+            <div class="nav-modal-section">
+                <h4>Navigation</h4>
+                <div class="nav-modal-links">
+                    <a href="../index.html">Home</a>
+                    <a href="../documentation.html">Documentation</a>
+                    <a href="../blog.html">Blog</a>
+                    <a href="https://github.com/kaiT2en/KaiT2en-Fedora" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+
+                        GitHub
+                    </a>
+                    <a href="https://discord.gg/AGfjRk4ydj" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20.317 4.369a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.445.865-.608 1.249a18.27 18.27 0 0 0-5.487 0 12.51 12.51 0 0 0-.617-1.25.077.077 0 0 0-.079-.036A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .079.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127c-.598.35-1.22.645-1.873.891a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.056c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.096 2.157 2.42 0 1.332-.955 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.332-.946 2.418-2.157 2.418z"/></svg>
+
+                        Discord
+                    </a>
+                    <a href="https://matrix.to/#/%23kait2en:matrix.org" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M6.5 3H3v18h3.5"/><path d="M17.5 3H21v18h-3.5"/><path d="M8 16.5v-8"/><path d="M8 10.6c.4-1.4 1.4-2.1 2.5-2.1 1.2 0 2 .9 2 2.3v5.7"/><path d="M12.5 10.6c.4-1.4 1.4-2.1 2.5-2.1 1.2 0 2 .9 2 2.3v5.7"/></svg>
+
+                        Matrix
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../main.js"></script>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+        <img id="lightbox-img" src="" alt="">
+    </div>
+</body>
+</html>
