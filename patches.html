@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patches - KAIT2EN Fedora</title>
+    <meta name="description" content="Every fix we wrote for T2 Macs, and where it stands upstream.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Patches - KAIT2EN Fedora">
+    <meta property="og:description" content="Every fix we wrote for T2 Macs, and where it stands upstream.">
+    <meta property="og:url" content="https://kait2en.org/patches.html">
+    <meta property="og:image" content="https://kait2en.org/img/og-image.png">
+    <meta property="og:site_name" content="KAIT2EN Fedora">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Patches - KAIT2EN Fedora">
+    <meta name="twitter:description" content="Every fix we wrote for T2 Macs, and where it stands upstream.">
+    <meta name="twitter:image" content="https://kait2en.org/img/og-image.png">
+
+    <link rel="canonical" href="https://kait2en.org/patches.html">
+    <link rel="alternate" type="application/rss+xml" title="KAIT2EN Fedora blog" href="feed.xml">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="img/favicon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Grid Background -->
+    <div class="grid-bg"></div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo" aria-label="KAIT2EN Fedora">
+                <img src="img/kait2en-wordmark.png" alt="KAIT2EN Fedora">
+            </a>
+            <button class="nav-burger" onclick="toggleMenu()" aria-label="Open menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <line x1="3" y1="12" x2="21" y2="12"/>
+                    <line x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+            </button>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html#installation">Install</a>
+                <a href="patches.html" class="active">Patches</a>
+                <a href="faq.html">FAQ</a>
+                <a href="documentation.html">Docs</a>
+                <a href="blog.html">Blog</a>
+                <a href="index.html#donate">Funding</a>
+                <a href="https://github.com/kaiT2en/KaiT2en-Fedora" target="_blank" rel="noopener" class="nav-github">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+
+                    GitHub
+                </a>
+                <a href="https://discord.gg/AGfjRk4ydj" target="_blank" rel="noopener" class="nav-discord">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20.317 4.369a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.445.865-.608 1.249a18.27 18.27 0 0 0-5.487 0 12.51 12.51 0 0 0-.617-1.25.077.077 0 0 0-.079-.036A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .079.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127c-.598.35-1.22.645-1.873.891a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.056c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.096 2.157 2.42 0 1.332-.955 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.332-.946 2.418-2.157 2.418z"/></svg>
+
+                    Discord
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt">
+        <header class="pt-head">
+            <h1>Patches</h1>
+            <p>Every fix we wrote for T2 Macs, and where it stands upstream. Click a patch for the details.</p>
+        </header>
+
+        <div class="pt-summary">
+            <div class="pt-sum pt-sum--total"><b>49</b><span>patches</span></div>
+            <div class="pt-sum pt-sum--merged"><b>11</b><span>merged</span></div>
+            <div class="pt-sum pt-sum--submitted"><b>22</b><span>under review</span></div>
+            <div class="pt-sum pt-sum--downstream"><b>13</b><span>KAIT2EN only</span></div>
+        </div>
+
+        <div class="pt-filter" role="group" aria-label="Filter by project">
+            <button class="pt-chip is-active" type="button" data-project="all" aria-pressed="true">All<i>49</i></button>
+            <button class="pt-chip" type="button" data-project="linux-kernel" aria-pressed="false">Linux kernel<i>33</i></button>
+            <button class="pt-chip" type="button" data-project="kait2en-fedora" aria-pressed="false">KAIT2EN Fedora<i>13</i></button>
+            <button class="pt-chip" type="button" data-project="gnome-shell" aria-pressed="false">GNOME Shell<i>1</i></button>
+            <button class="pt-chip" type="button" data-project="systemd" aria-pressed="false">systemd<i>1</i></button>
+            <button class="pt-chip" type="button" data-project="upower" aria-pressed="false">upower<i>1</i></button>
+        </div>
+
+        <section class="pt-group" id="under-review">
+            <h2>Under review<span>22</span></h2>
+            <details class="pt-item" id="brcmfmac-bcm4364-ap-fwauth" data-project="linux-kernel">
+                <summary>
+                    <span class="pt-sub">Wi-Fi / brcmfmac</span>
+                    <span class="pt-name"><span class="pt-title">BCM4364 and BCM4377 hotspot authentication</span><span class="pt-ver">v2</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--submitted">Submitted</span>
+                        <time class="pt-date" datetime="2026-11-18">18 Nov 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>The firmware handshake for its access point stalls on the BCM4364 and BCM4377, for WPA2 and WPA3, and clients drop after about 8 s. brcmfmac leaves the handshake to wpa_supplicant or hostapd.</p>                    <div class="pt-meta">
+                        Linux kernel · @deqrocks
+                        <a href="https://lore.kernel.org/all/20261118141024.92354-1-dev@deq.rocks/" target="_blank" rel="noopener">lore.kernel.org ↗</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="brcmfmac-bcm4364-txbf" data-project="linux-kernel">
+                <summary>
+                    <span class="pt-sub">Wi-Fi / brcmfmac</span>
+                    <span class="pt-name"><span class="pt-title">BCM4364 TX beamforming off</span><span class="pt-ver">v2</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--submitted">Submitted</span>
+                        <time class="pt-date" datetime="2026-11-18">18 Nov 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>With TX beamforming the BCM4364 firmware sends one stream. Uplink rises from about 350 to 620 Mbit/s with beamforming off.</p>                    <div class="pt-meta">
+                        Linux kernel · @deqrocks
+                        <a href="https://lore.kernel.org/all/20261118141020.92306-1-dev@deq.rocks/" target="_blank" rel="noopener">lore.kernel.org ↗</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="brcmfmac-bcm4364-ndoe" data-project="linux-kernel">
+                <summary>
+                    <span class="pt-sub">Wi-Fi / brcmfmac</span>
+                    <span class="pt-name"><span class="pt-title">BCM4355 and BCM4364 ND offload off</span><span class="pt-ver">v2</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--submitted">Submitted</span>
+                        <time class="pt-date" datetime="2026-11-18">18 Nov 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>With ND offload on, downloads dropped to about 55 Mbit/s on the BCM4364 and about 50 Mbit/s on the BCM4355 of the MacBookAir8,1. brcmfmac keeps ARP and ND offload off on these chips on Apple boards while awake, as macOS does. Closes t2linux/kernel#34 and T2-Debian-and-Ubuntu-Kernel#227.</p>                    <div class="pt-meta">
+                        Linux kernel · @deqrocks, @AdityaGarg8
+                        <a href="https://lore.kernel.org/all/20261118123933.74517-1-dev@deq.rocks/" target="_blank" rel="noopener">lore.kernel.org ↗</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="card-reader-fix" data-project="linux-kernel">
+                <summary>
+                    <span class="pt-sub">xHCI/USB</span>
+                    <span class="pt-name"><span class="pt-title">Card reader power management</span><span class="pt-ver">v1</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--submitted">Submitted</span>
+                        <time class="pt-date" datetime="2026-11-17">17 Nov 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>We did not support cutting on/off power to the card reader with this patch we add, and we get a slight decrease in power within suspend.</p>                    <div class="pt-meta">
+                        Linux Kernel · @byte
+                        <a href="https://lore.kernel.org/all/20261116231926.5891-1-atharvatiwarilinuxdev@gmail.com/" target="_blank" rel="noopener">lore.kernel.org ↗</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="hybrid-graphics" data-project="linux-kernel">
+                <summary>
+                    <span class="pt-sub">apple-gmux / amdgpu</span>
+                    <span class="pt-name"><span class="pt-title">Hybrid graphics on T2 MacBook Pros</span><span class="pt-ver">v2</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--submitted">Submitted</span>
+                        <time class="pt-date" datetime="2026-11-14">14 Nov 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>Fixes apple-gmux on T2 Macs: dGPU power sequencing, the MMIO interface, interrupts with hotplug wake of the dGPU for external monitors, and the gpu-active EFI variable the T2 reads. amdgpu gets vga_switcheroo runtime PM on top, so the dGPU powers off when idle. Tested on MacBookPro15,1, 16,1 and 16,4.</p>                    <div class="pt-meta">
+                        Linux kernel · @byte, @deqrocks
+                        <a href="https://lore.kernel.org/all/20261114160731.3756-1-atharvatiwarilinuxdev@gmail.com/" target="_blank" rel="noopener">lore.kernel.org ↗</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="apple-t2-panel-self-refresh" data-project="linux-kernel">
+                <summary>
+                    <span class="pt-sub">DRM / i915</span>
+                    <span class="pt-name"><span class="pt-title">Panel Self Refresh on T2 eDP panels</span><span class="pt-ver">v4</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--submitted">Submitted</span>
+                        <time class="pt-date" datetime="2026-11-12">12 Nov 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>Enables PSR with the sink-specific DPCD setup. Lowers idle display power and allows package C-states up to PC10. KAIT2EN ships it in a patched i915 module until it is merged. Resend by AdityaGarg()</p>                    <div class="pt-meta">
+                        Linux kernel · @4f1sh3r
+                        <a href="https://lore.kernel.org/all/20261112165956.61633-1-aditya.garg@linux.dev/" target="_blank" rel="noopener">lore.kernel.org ↗</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="apple-t2-bridge" data-project="linux-kernel">
+                <summary>
+                    <span class="pt-sub">T2 / apple_t2_bridge</span>
+                    <span class="pt-name"><span class="pt-title">Upstreamable replacement for apple-bce and t2bce</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--preparing">Preparing</span>
+                        <time class="pt-date" datetime="2026-11-11">11 Nov 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>Bridge controller, virtual USB host and audio for the T2, laid out for mainline. Suspend and runtime PM work.</p>                    <div class="pt-meta">
+                        Linux kernel · @deqrocks
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="bluetooth-bcm4377-register-index" data-project="linux-kernel">
+                <summary>
+                    <span class="pt-sub">Bluetooth / hci_bcm4377</span>
+                    <span class="pt-name"><span class="pt-title">Probe with another controller present</span><span class="pt-ver">v2</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--submitted">Submitted</span>
+                        <time class="pt-date" datetime="2026-11-11">11 Nov 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>With another controller on hci0, a USB dongle for example, probe returned the new index and the PCI core took it as success without the unregister action. The controller then stayed registered after unbind. hci_bcm4377 now treats only negative returns as errors. Reviewed by Sven Peter.</p>                    <div class="pt-meta">
+                        Linux kernel · @deqrocks
+                        <a href="https://lore.kernel.org/all/20261111120248.21062-2-dev@deq.rocks/" target="_blank" rel="noopener">lore.kernel.org ↗</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="bluetooth-bcm4377-aspm" data-project="linux-kernel">
+                <summary>
+                    <span class="pt-sub">Bluetooth / hci_bcm4377</span>
+                    <span class="pt-name"><span class="pt-title">Link power management</span><span class="pt-ver">v2</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--submitted">Submitted</span>
+                        <time class="pt-date" datetime="2026-11-11">11 Nov 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>hci_bcm4377 kept ASPM off on the whole link to the Wi-Fi and Bluetooth chip because of a hardware erratum, which held the MacBookAir9,1 package at PC3. ASPM is now off only while the firmware boots. Acked by Sven Peter.</p>                    <div class="pt-meta">
+                        Linux kernel · @deqrocks
+                        <a href="https://lore.kernel.org/all/20261111120248.21062-4-dev@deq.rocks/" target="_blank" rel="noopener">lore.kernel.org ↗</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="thunderbolt-ice-lake-rtd3" data-project="linux-kernel">
+                <summary>
+                    <span class="pt-sub">Thunderbolt</span>
+                    <span class="pt-name"><span class="pt-title">Ice Lake runtime power off</span><span class="pt-ver">v1</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--submitted">Submitted</span>
+                        <time class="pt-date" datetime="2026-11-11">11 Nov 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>The software connection manager enabled runtime PM only for USB4 routers, so the Ice Lake NHI of the MacBookAir9,1 never suspended. With runtime PM for the Ice Lake router PC10 at idle with the display on rises from 33% to 64%. Needs pcie_ports=compat removed, which the installer does.</p>                    <div class="pt-meta">
+                        Linux kernel · @deqrocks
+                        <a href="https://lore.kernel.org/all/20261111130851.62101-1-dev@deq.rocks/" target="_blank" rel="noopener">lore.kernel.org ↗</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="x86-mtrr-resume" data-project="linux-kernel">
+                <summary>
+                    <span class="pt-sub">x86 / cache</span>
+                    <span class="pt-name"><span class="pt-title">Fast CPU bring-up after suspend</span><span class="pt-ver">v1</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--submitted">Submitted</span>
+                        <time class="pt-date" datetime="2026-11-11">11 Nov 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>The firmware leaves the secondary CPUs with invalid MTRRs after resume and x86 restored them only once all CPUs were online, so the CPUs ran uncached and a resume could take up to a minute. Each CPU now gets its MTRRs back as it comes online. Based on Chen Yu&#39;s fix.</p>                    <div class="pt-meta">
+                        Linux kernel · @deqrocks
+                        <a href="https://lore.kernel.org/all/20261111123747.49446-1-dev@deq.rocks/" target="_blank" rel="noopener">lore.kernel.org ↗</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="brcmfmac-deep-sleep" data-project="linux-kernel">
+                <summary>
+                    <span class="pt-sub">Wi-Fi / brcmfmac</span>
+                    <span class="pt-name"><span class="pt-title">Deep sleep on BCM4364 and BCM4377</span><span class="pt-ver">v2</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--submitted">Submitted</span>
+                        <time class="pt-date" datetime="2026-11-11">11 Nov 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>The firmware supports inband deep sleep, but brcmfmac left it disabled, so the chip stayed awake and its latency tolerance held the package out of PC10. brcmfmac now follows the deep sleep handshake of the firmware and the package reaches PC10 with Wi-Fi associated, without ignoring the LTR of the Wi-Fi port.</p>                    <div class="pt-meta">
+                        Linux kernel · @deqrocks
+                        <a href="https://lore.kernel.org/all/20261111120748.23795-6-dev@deq.rocks/" target="_blank" rel="noopener">lore.kernel.org ↗</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="brcmfmac-cold-resume" data-project="linux-kernel">
+                <summary>
+                    <span class="pt-sub">Wi-Fi / brcmfmac</span>
+                    <span class="pt-name"><span class="pt-title">Cold resume after S3</span><span class="pt-ver">v2</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--submitted">Submitted</span>
+                        <time class="pt-date" datetime="2026-11-11">11 Nov 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>The chip loses its firmware in S3 but its registers can read as running, so brcmfmac took the hot resume path and commands timed out. It now reloads the firmware when platform firmware handled the resume and Wake-on-WLAN is off. The suspend service keeps the drivers loaded, so sleep starts 10 to 15 s sooner on BCM4377. The BCM4377 D3 acknowledgement uses patch 5 of Michael Reeves&#39; BCM4388 series, carried until merged: https://lore.kernel.org/all/20260925-brcm4388-submit-v1-5-b5cbc2cde2fb@gmail.com/</p>                    <div class="pt-meta">
+                        Linux kernel · @deqrocks
+                        <a href="https://lore.kernel.org/all/20261111120748.23795-1-dev@deq.rocks/" target="_blank" rel="noopener">lore.kernel.org ↗</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="bluetooth-bcm4377-cold-resume" data-project="linux-kernel">
+                <summary>
+                    <span class="pt-sub">Bluetooth / hci_bcm4377</span>
+                    <span class="pt-name"><span class="pt-title">Cold resume after S3</span><span class="pt-ver">v2</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--submitted">Submitted</span>
+                        <time class="pt-date" datetime="2026-11-11">11 Nov 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>The controller loses its firmware in S3. hci_bcm4377 now probes it again after such a resume and skips the ring teardown messages that each waited a second.</p>                    <div class="pt-meta">
+                        Linux kernel · @deqrocks
+                        <a href="https://lore.kernel.org/all/20261111120248.21062-1-dev@deq.rocks/" target="_blank" rel="noopener">lore.kernel.org ↗</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="brcmfmac-flowring-delete" data-project="linux-kernel">
+                <summary>
+                    <span class="pt-sub">Wi-Fi / brcmfmac</span>
+                    <span class="pt-name"><span class="pt-title">BCM4377 flowring delete</span><span class="pt-ver">v2</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--submitted">Submitted</span>
+                        <time class="pt-date" datetime="2026-11-11">11 Nov 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>The firmware reports queued packets only after the host deletes a flowring. brcmfmac waited up to 100 ms per flowring first, on every disconnect and suspend, and miscounted them. It now deletes right away.</p>                    <div class="pt-meta">
+                        Linux kernel · @deqrocks
+                        <a href="https://lore.kernel.org/all/20261111120748.23795-1-dev@deq.rocks/" target="_blank" rel="noopener">lore.kernel.org ↗</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="gmux-brightness-after-panel-power-on" data-project="linux-kernel">
+                <summary>
+                    <span class="pt-sub">DRM / i915</span>
+                    <span class="pt-name"><span class="pt-title">Display brightness after screen lock and resume in iGPU mode</span><span class="pt-ver">v1</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--submitted">Submitted</span>
+                        <time class="pt-date" datetime="2026-11-08">08 Nov 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>On dual GPU T2 MacBook Pros gmux resets the brightness when i915 powers the panel off, so the display came back at 80% after screen lock, login and resume. i915 now writes the set level back once the panel is on. KAIT2EN ships it in a patched i915 module until it is merged.</p>                    <div class="pt-meta">
+                        Linux kernel · @deqrocks
+                        <a href="https://lore.kernel.org/all/20261108100926.28950-1-dev@deq.rocks/" target="_blank" rel="noopener">lore.kernel.org ↗</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="hci-bcm-le-scan" data-project="linux-kernel">
+                <summary>
+                    <span class="pt-sub">Bluetooth / btbcm</span>
+                    <span class="pt-name"><span class="pt-title">LE scanning on Broadcom controllers</span><span class="pt-ver">v2</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--submitted">Submitted</span>
+                        <time class="pt-date" datetime="2026-11-05">05 Nov 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>The controllers set extra bits in the LE advertising report type and the kernel dropped those reports. Controller duplicate filtering hid changed advertisements for up to 11 s. Both drivers turn the filter off, and btbcm clears the extra bits until Fedora ships commit 88397423671f from bluetooth-next. A Mac opening AirDrop shows up within a second.</p>                    <div class="pt-meta">
+                        Linux kernel · @deqrocks
+                        <a href="https://lore.kernel.org/all/20261105085750.120392-1-dev@deq.rocks/" target="_blank" rel="noopener">lore.kernel.org ↗</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="brcmfmac-awdl" data-project="linux-kernel">
+                <summary>
+                    <span class="pt-sub">Wi-Fi / brcmfmac</span>
+                    <span class="pt-name"><span class="pt-title">AWDL on BCM4364 and BCM4377</span><span class="pt-ver">v1</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--submitted">Submitted</span>
+                        <time class="pt-date" datetime="2026-11-05">05 Nov 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>brcmfmac creates the AWDL interface, passes its firmware events to user space and carries data over awdl0. The t2-drop service drives it as macOS does. Patch 1 is dropped for the same fix in Michael Reeves&#39; BCM4388 series, v2 follows on top of it.</p>                    <div class="pt-meta">
+                        Linux kernel · @deqrocks
+                        <a href="https://lore.kernel.org/all/20261104151547.70333-1-dev@deq.rocks/" target="_blank" rel="noopener">lore.kernel.org ↗</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="btbcm-acl-priority" data-project="linux-kernel">
+                <summary>
+                    <span class="pt-sub">Bluetooth / btbcm</span>
+                    <span class="pt-name"><span class="pt-title">ACL priority on Broadcom controllers</span><span class="pt-ver">v2</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--submitted">Submitted</span>
+                        <time class="pt-date" datetime="2026-11-05">05 Nov 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>With 2.4 GHz Wi-Fi traffic the controller held Bluetooth packets for up to 200 ms and A2DP dropped out. hci_bcm and hci_bcm4377 set high priority for every link on connect, as the Android Broadcom vendor library does.</p>                    <div class="pt-meta">
+                        Linux kernel · @deqrocks
+                        <a href="https://lore.kernel.org/all/20261105085750.120392-1-dev@deq.rocks/" target="_blank" rel="noopener">lore.kernel.org ↗</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="brcmfmac-ps-timeout" data-project="linux-kernel">
+                <summary>
+                    <span class="pt-sub">Wi-Fi / brcmfmac</span>
+                    <span class="pt-name"><span class="pt-title">Power save timeout</span><span class="pt-ver">v1</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--submitted">Submitted</span>
+                        <time class="pt-date" datetime="2026-11-04">04 Nov 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>brcmfmac used a 2 s power save timeout when NetworkManager set none. It now uses 200 ms, the macOS value on BCM4377. Idle power on MacBookPro15,1 with Wi-Fi connected dropped from 11.3 W to 9.2 W.</p>                    <div class="pt-meta">
+                        Linux kernel · @deqrocks
+                        <a href="https://lore.kernel.org/all/20261104151626.70737-1-dev@deq.rocks/" target="_blank" rel="noopener">lore.kernel.org ↗</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="imac-5k" data-project="linux-kernel">
+                <summary>
+                    <span class="pt-sub">DRM / amdgpu</span>
+                    <span class="pt-name"><span class="pt-title">5K display on iMac20,1 and iMac20,2</span><span class="pt-ver">v1</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--submitted">Submitted</span>
+                        <time class="pt-date" datetime="2026-11-04">04 Nov 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>Drives the internal 5K panel at full resolution by genlocking its two display streams, including resolution changes. Closes drm/amd#4455 and #4895.</p>                    <div class="pt-meta">
+                        Linux kernel · @byte
+                        <a href="https://lore.kernel.org/all/20261104193649.8158-1-atharvatiwarilinuxdev@gmail.com/" target="_blank" rel="noopener">lore.kernel.org ↗</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="navi14-mbp161-trained-uclk" data-project="linux-kernel">
+                <summary>
+                    <span class="pt-sub">DRM / amdgpu</span>
+                    <span class="pt-name"><span class="pt-title">Navi14 memory clock levels on MacBookPro16,1</span><span class="pt-ver">v1</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--submitted">Submitted</span>
+                        <time class="pt-date" datetime="2026-10-24">24 Oct 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>Apple&#39;s pptable lists memory clock levels the VBIOS did not train. Switching to one hung the SMU and caused a CATERR at boot or under load. amdgpu now uses the trained levels from the VBIOS.</p>                    <div class="pt-meta">
+                        Linux kernel · @deqrocks
+                        <a href="https://lore.kernel.org/all/20261024162109.307247-1-dev@deq.rocks/" target="_blank" rel="noopener">lore.kernel.org ↗</a>
+                    </div>
+                </div>
+            </details>
+        </section>
+        <section class="pt-group" id="merged">
+            <h2>Merged upstream<span>11</span></h2>
+            <details class="pt-item" id="brcmfmac-bcm4364-antenna-sku" data-project="linux-kernel">
+                <summary>
+                    <span class="pt-sub">Wi-Fi / brcmfmac</span>
+                    <span class="pt-name"><span class="pt-title">BCM4364/3 firmware selection without antenna SKU</span><span class="pt-ver">v1</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--merged">Merged</span>
+                        <time class="pt-date" datetime="2026-11-11">11 Nov 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>ACPI on iMacPro1,1, iMac19,1 and iMac19,2 does not advertise the antenna SKU that brcmfmac requires for Apple firmware selection. The macOS firmware for BCM4364/3 does not depend on it, so the antenna SKU is optional on this chip and used only when ACPI provides it.</p>                    <div class="pt-meta">
+                        Linux kernel · @AdityaGarg8
+                        <a href="https://lore.kernel.org/all/20261111141756.11564-1-aditya.garg@linux.dev/" target="_blank" rel="noopener">lore.kernel.org ↗</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="ignore-trackpad" data-project="linux-kernel">
+                <summary>
+                    <span class="pt-sub">HID / Input</span>
+                    <span class="pt-name"><span class="pt-title">hid-apple ignores the T2 trackpad</span><span class="pt-ver">v1</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--merged">Merged</span>
+                        <time class="pt-date" datetime="2026-09-03">03 Sep 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>Trackpad and keyboard share one VID/PID. Uses the existing APPLE_IGNORE_MOUSE quirk.</p>                    <div class="pt-meta">
+                        Linux kernel · @AdityaGarg8
+                        <a href="https://lore.kernel.org/linux-input/20260903064407.27755-1-aditya.garg@linux.dev/" target="_blank" rel="noopener">lore.kernel.org ↗</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="thunderbolt-device-links" data-project="linux-kernel">
+                <summary>
+                    <span class="pt-sub">Thunderbolt</span>
+                    <span class="pt-name"><span class="pt-title">Device links</span><span class="pt-ver">v9</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--merged">Merged</span>
+                        <time class="pt-date" datetime="2026-08-17">17 Aug 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>Moves Apple device-link discovery into the Thunderbolt PCI code and adds Titan Ridge and Ice Lake support. Expected in kernel 7.4.</p>                    <div class="pt-meta">
+                        Linux kernel · @byte, @deqrocks
+                        <a href="https://lore.kernel.org/all/20260817101329.1517-1-atharvatiwarilinuxdev@gmail.com/" target="_blank" rel="noopener">lore.kernel.org ↗</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="touchbar-runtime-pm-deadlock" data-project="linux-kernel">
+                <summary>
+                    <span class="pt-sub">HID / Touch Bar</span>
+                    <span class="pt-name"><span class="pt-title">Runtime PM in suspend and resume</span><span class="pt-ver">v1</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--merged">Merged</span>
+                        <time class="pt-date" datetime="2026-08-10">10 Aug 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>Removes nested runtime PM references in the HID callbacks that stalled Touch Bar suspend and resume.</p>                    <div class="pt-meta">
+                        Linux kernel · @deqrocks
+                        <a href="https://lore.kernel.org/linux-input/20260810140352.35866-1-dev@deq.rocks/" target="_blank" rel="noopener">lore.kernel.org ↗</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="display-brightness-after-reboot" data-project="systemd">
+                <summary>
+                    <span class="pt-sub">udev</span>
+                    <span class="pt-name"><span class="pt-title">Display brightness across reboots</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--merged">Merged</span>
+                        <time class="pt-date" datetime="2026-08-02">02 Aug 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>Gives the backlight a stable path ID so the brightness setting persists.</p>                    <div class="pt-meta">
+                        systemd · @deqrocks
+                        <a href="https://github.com/systemd/systemd/pull/43255" target="_blank" rel="noopener">github.com ↗</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="keyboard-backlight-reenumeration" data-project="upower">
+                <summary>
+                    <span class="pt-sub">upower</span>
+                    <span class="pt-name"><span class="pt-title">Keyboard backlight after re-enumeration</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--merged">Merged</span>
+                        <time class="pt-date" datetime="2026-07-29">29 Jul 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>Restores the keyboard backlight after the keyboard re-enumerates.</p>                    <div class="pt-meta">
+                        upower · @deqrocks
+                        <a href="https://gitlab.freedesktop.org/upower/upower/-/merge_requests/335" target="_blank" rel="noopener">gitlab.freedesktop.org ↗</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="volume-slider-crackling" data-project="gnome-shell">
+                <summary>
+                    <span class="pt-sub">Quick Settings</span>
+                    <span class="pt-name"><span class="pt-title">Volume slider on DSP sinks</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--merged">Merged</span>
+                        <time class="pt-date" datetime="2026-07-27">27 Jul 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>Fixes crackling while dragging the Quick Settings volume slider on PipeWire DSP sinks.</p>                    <div class="pt-meta">
+                        GNOME Shell · @deqrocks
+                        <a href="https://gitlab.gnome.org/GNOME/gnome-shell/-/merge_requests/4302" target="_blank" rel="noopener">gitlab.gnome.org ↗</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="dgpu-wakeup-15-1" data-project="linux-kernel">
+                <summary>
+                    <span class="pt-sub">PCI / amdgpu</span>
+                    <span class="pt-name"><span class="pt-title">dGPU after resume on MacBookPro15,1</span><span class="pt-ver">v1</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--merged">Merged</span>
+                        <time class="pt-date" datetime="2026-07-22">22 Jul 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>Fixes the SMU being unresponsive after resume.</p>                    <div class="pt-meta">
+                        Linux kernel · @FrederickGeek8, @deqrocks
+                        <a href="https://lore.kernel.org/all/20260722125734.6541-1-dev@deq.rocks/" target="_blank" rel="noopener">lore.kernel.org ↗</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="fn-double-press-layer-switch" data-project="linux-kernel">
+                <summary>
+                    <span class="pt-sub">HID / Touch Bar</span>
+                    <span class="pt-name"><span class="pt-title">Fn double press switches the layer</span><span class="pt-ver">v5</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--merged">Merged</span>
+                        <time class="pt-date" datetime="2026-07-22">22 Jul 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+                    <div class="pt-meta">
+                        Linux kernel · @AdityaGarg8, @deqrocks
+                        <a href="https://lore.kernel.org/linux-input/20260722141221.13844-1-dev@deq.rocks/" target="_blank" rel="noopener">lore.kernel.org ↗</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="keyboard-backlight-brightness" data-project="linux-kernel">
+                <summary>
+                    <span class="pt-sub">HID / Input</span>
+                    <span class="pt-name"><span class="pt-title">Keyboard backlight brightness levels</span><span class="pt-ver">v1</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--merged">Merged</span>
+                        <time class="pt-date" datetime="2026-07-18">18 Jul 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>Parses the backlight reports with the correct endianness.</p>                    <div class="pt-meta">
+                        Linux kernel · @deqrocks
+                        <a href="https://lore.kernel.org/linux-input/20260718151241.7496-1-dev@deq.rocks/" target="_blank" rel="noopener">lore.kernel.org ↗</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="keyboard-backlight-after-resume" data-project="linux-kernel">
+                <summary>
+                    <span class="pt-sub">HID / Input</span>
+                    <span class="pt-name"><span class="pt-title">Keyboard backlight after resume</span><span class="pt-ver">v1</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--merged">Merged</span>
+                        <time class="pt-date" datetime="2026-07-18">18 Jul 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>Restores the butterfly keyboard backlight level after resume and uses the Magic Keyboard LED naming.</p>                    <div class="pt-meta">
+                        Linux kernel · @deqrocks
+                        <a href="https://lore.kernel.org/linux-input/20260718121527.15924-1-dev@deq.rocks/" target="_blank" rel="noopener">lore.kernel.org ↗</a>
+                    </div>
+                </div>
+            </details>
+        </section>
+        <section class="pt-group" id="kait2en-only">
+            <h2>Shipped in KAIT2EN, upstream pending<span>13</span></h2>
+            <details class="pt-item" id="thunderbolt-titan-ridge-rtd3" data-project="kait2en-fedora">
+                <summary>
+                    <span class="pt-sub">Thunderbolt</span>
+                    <span class="pt-name"><span class="pt-title">Titan Ridge runtime power off</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--downstream">KAIT2EN</span>
+                        <time class="pt-date" datetime="2026-11-10">10 Nov 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>Idle Titan Ridge controllers of T2 MacBook Pros are powered off with the macOS sequence on their PCIe root ports, which lets the package go below PC7. KAIT2EN ships it in a patched thunderbolt module, upstream it needs a PCI quirk for these ports.</p>                    <div class="pt-meta">
+                        KAIT2EN Fedora · @deqrocks
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="true-tone" data-project="kait2en-fedora">
+                <summary>
+                    <span class="pt-sub">t2-truetone / ambient light sensor</span>
+                    <span class="pt-name"><span class="pt-title">True Tone and evening mode</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--downstream">KAIT2EN</span>
+                        <time class="pt-date" datetime="2026-11-08">08 Nov 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>T2 TrueTone adapts the display white to the color of the ambient light through the panel&#39;s gamma LUT, with a strength slider, and warms it on a daily schedule. Replaces GNOME Night Light. Off until turned on in the app.</p>                    <div class="pt-meta">
+                        KAIT2EN Fedora · @deqrocks
+                        <a href="documentation.html#t2-truetone">Documentation</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="automatic-brightness" data-project="kait2en-fedora">
+                <summary>
+                    <span class="pt-sub">t2-truetone / ambient light sensor</span>
+                    <span class="pt-name"><span class="pt-title">Automatic brightness (ALS)</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--downstream">KAIT2EN</span>
+                        <time class="pt-date" datetime="2026-11-08">08 Nov 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>Part of T2 TrueTone. Follows the ambient light sensor with the macOS curve, a 20 % dead band, slow fades and learning from manual changes. Replaces GNOME automatic brightness.</p>                    <div class="pt-meta">
+                        KAIT2EN Fedora · @deqrocks
+                        <a href="documentation.html#t2-truetone">Documentation</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="t2-airshare" data-project="kait2en-fedora">
+                <summary>
+                    <span class="pt-sub">t2-airshare</span>
+                    <span class="pt-name"><span class="pt-title">T2 AirShare (AirDrop and Quick Share)</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--downstream">KAIT2EN</span>
+                        <time class="pt-date" datetime="2026-11-01">01 Nov 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>AirDrop with Apple devices in both directions while the Mac stays on its Wi-Fi network, and Quick Share with Android phones over Bluetooth and a Mac hotspot. One send window, one accept notification and one trusted device list.</p>                    <div class="pt-meta">
+                        KAIT2EN Fedora · @deqrocks
+                        <a href="documentation.html#t2-airshare">Documentation</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="butterfly-keyboard-debounce" data-project="kait2en-fedora">
+                <summary>
+                    <span class="pt-sub">HID / t2hid</span>
+                    <span class="pt-name"><span class="pt-title">Butterfly keyboard debounce</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--downstream">KAIT2EN</span>
+                        <time class="pt-date" datetime="2026-10-28">28 Oct 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>Optional filter for double-registered keystrokes, enabled with t2hid.debounce_ms=40.</p>                    <div class="pt-meta">
+                        KAIT2EN Fedora · @deqrocks
+                        <a href="documentation.html#butterfly-keyboard-debounce">Documentation</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="t2-sidecar-encode" data-project="kait2en-fedora">
+                <summary>
+                    <span class="pt-sub">t2-sidecar</span>
+                    <span class="pt-name"><span class="pt-title">Low-latency video encoding (T2 Sidecar encoder)</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--downstream">KAIT2EN</span>
+                        <time class="pt-date" datetime="2026-10-23">23 Oct 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>The T2 Sidecar encoder as a V4L2 H.264/HEVC encoder, usable through ffmpeg and the t2-sidecar Sunshine build https://github.com/deqrocks/Sunshine.</p>                    <div class="pt-meta">
+                        KAIT2EN Fedora · @deqrocks
+                        <a href="documentation.html#streaming-using-sidecar">Documentation</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="smc-power-limits" data-project="kait2en-fedora">
+                <summary>
+                    <span class="pt-sub">t2smc / t2-zone-power</span>
+                    <span class="pt-name"><span class="pt-title">SMC power limit steps</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--downstream">KAIT2EN</span>
+                        <time class="pt-date" datetime="2026-10-12">12 Oct 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>The SMC requests lower CPU and GPU limits in steps. Linux ignored them until PROCHOT dropped the CPU to 800 MHz. t2smc exposes the steps and T2 Zone Power applies them as macOS does. An amdgpu patch lets the Navi GPUs go down to 40 % of TDP.</p>                    <div class="pt-meta">
+                        KAIT2EN Fedora · @deqrocks
+                        <a href="documentation.html#t2-zone-power">Documentation</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="t2-touch-bar" data-project="kait2en-fedora">
+                <summary>
+                    <span class="pt-sub">t2bdrm / t2touchbar</span>
+                    <span class="pt-name"><span class="pt-title">Touch Bar daemon</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--downstream">KAIT2EN</span>
+                        <time class="pt-date" datetime="2026-10-04">04 Oct 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>Optional daemon with media and F-key rows, gestures for volume and brightness, the Touch ID prompt and media track display. Stays dark until touched.</p>                    <div class="pt-meta">
+                        KAIT2EN Fedora · @deqrocks
+                        <a href="documentation.html#t2-touch-bar">Documentation</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="force-click" data-project="kait2en-fedora">
+                <summary>
+                    <span class="pt-sub">Input / Force Touch</span>
+                    <span class="pt-name"><span class="pt-title">Force Click trackpad controls</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--downstream">KAIT2EN</span>
+                        <time class="pt-date" datetime="2026-09-21">21 Sep 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>Adjustable click and Force Click pressure, Taptic Engine feedback and configurable Force Click actions.</p>                    <div class="pt-meta">
+                        KAIT2EN Fedora · @deqrocks
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="audio-dsp" data-project="kait2en-fedora">
+                <summary>
+                    <span class="pt-sub">snd-apple-t2</span>
+                    <span class="pt-name"><span class="pt-title">Audio DSP</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--downstream">KAIT2EN</span>
+                        <time class="pt-date" datetime="2026-09-15">15 Sep 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>Speaker and microphone DSP graphs per model, derived from the macOS processing.</p>                    <div class="pt-meta">
+                        KAIT2EN Fedora · @deqrocks
+                        <a href="documentation.html#audio-dsp">Documentation</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="touch-id" data-project="kait2en-fedora">
+                <summary>
+                    <span class="pt-sub">t2-touchid / BiometricKit</span>
+                    <span class="pt-name"><span class="pt-title">Touch ID login</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--downstream">KAIT2EN</span>
+                        <time class="pt-date" datetime="2026-09-11">11 Sep 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>Fingers enrolled under macOS unlock login and sudo through stock fprintd. Enrollment on Linux is open. Target is an upstream libfprint driver.</p>                    <div class="pt-meta">
+                        KAIT2EN Fedora · @deqrocks
+                        <a href="documentation.html#touch-id">Documentation</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="t2-ave-hardware-encode" data-project="kait2en-fedora">
+                <summary>
+                    <span class="pt-sub">t2-ave</span>
+                    <span class="pt-name"><span class="pt-title">Hardware video encoding (T2 AVE)</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--downstream">KAIT2EN</span>
+                        <time class="pt-date" datetime="2026-09-11">11 Sep 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>HEVC encoding on the T2 Apple Video Encoder, usable through ffmpeg and the t2-ave HandBrake build https://github.com/deqrocks/HandBrake.</p>                    <div class="pt-meta">
+                        KAIT2EN Fedora · @deqrocks
+                        <a href="documentation.html#hardware-video-encoding">Documentation</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="package-c-states" data-project="kait2en-fedora">
+                <summary>
+                    <span class="pt-sub">Power management</span>
+                    <span class="pt-name"><span class="pt-title">Package C-states</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--downstream">KAIT2EN</span>
+                        <time class="pt-date" datetime="2026-08-03">03 Aug 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>Deep package C-states at idle for lower power draw.</p>                    <div class="pt-meta">
+                        KAIT2EN Fedora · @deqrocks
+                    </div>
+                </div>
+            </details>
+        </section>
+        <section class="pt-group" id="withdrawn">
+            <h2>Superseded or withdrawn<span>3</span></h2>
+            <details class="pt-item" id="brcmfmac-d3-ack-reload" data-project="linux-kernel">
+                <summary>
+                    <span class="pt-sub">Wi-Fi / brcmfmac</span>
+                    <span class="pt-name"><span class="pt-title">Firmware reload after a missing D3 ACK</span><span class="pt-ver">v1</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--superseded">Superseded</span>
+                        <time class="pt-date" datetime="2026-11-18">18 Nov 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>Superseded by the cold resume series above. Patch 3 reloads the firmware after a resume through platform firmware and patch 4 drops the tx status wait on flowring delete.</p>                    <div class="pt-meta">
+                        Linux kernel · @deqrocks
+                        <a href="https://lore.kernel.org/all/20261104151616.70623-1-dev@deq.rocks/" target="_blank" rel="noopener">lore.kernel.org ↗</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="brcmfmac-bcm4377-d3-ack" data-project="linux-kernel">
+                <summary>
+                    <span class="pt-sub">Wi-Fi / brcmfmac</span>
+                    <span class="pt-name"><span class="pt-title">BCM4377 missing D3 ACK workaround</span><span class="pt-ver">v2</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--superseded">Superseded</span>
+                        <time class="pt-date" datetime="2026-11-18">18 Nov 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>No longer needed. With the mailbox over the control ring from Michael Reeves&#39; BCM4388 series the BCM4377 acknowledges D3.</p>                    <div class="pt-meta">
+                        Linux kernel · @deqrocks
+                        <a href="https://lore.kernel.org/all/20261001085308.1688049-1-dev@deq.rocks/" target="_blank" rel="noopener">lore.kernel.org ↗</a>
+                    </div>
+                </div>
+            </details>
+            <details class="pt-item" id="apple-t2-early-cpu-offlining" data-project="linux-kernel">
+                <summary>
+                    <span class="pt-sub">ACPI / CPU hotplug</span>
+                    <span class="pt-name"><span class="pt-title">CPU restore after suspend</span><span class="pt-ver">v1</span></span>
+                    <span class="pt-right">
+                        <span class="pt-pill pt-pill--superseded">Superseded</span>
+                        <time class="pt-date" datetime="2026-11-11">11 Nov 2026</time>
+                    </span>
+                </summary>
+                <div class="pt-body">
+<p>Withdrawn in favor of the MTRR restore on resume below, which fixes the cause instead of offlining the CPUs early.</p>                    <div class="pt-meta">
+                        Linux kernel · @deqrocks
+                        <a href="https://lore.kernel.org/all/20260812120326.155226-1-dev@deq.rocks/" target="_blank" rel="noopener">lore.kernel.org ↗</a>
+                    </div>
+                </div>
+            </details>
+        </section>
+        <p class="pt-empty" hidden>No patches for this project.</p>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="img/kait2en-wordmark.png" alt="KAIT2EN Fedora">
+                </div>
+
+                <div class="footer-links">
+                    <a href="https://github.com/kaiT2en/KaiT2en-Fedora" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+
+                        GitHub
+                    </a>
+                    <a href="https://github.com/kaiT2en/KaiT2en-Fedora/issues" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><rect x="8" y="6" width="8" height="14" rx="4"/><path d="M19 7l-3 2M5 7l3 2M19 20l-3-2M5 20l3-2M22 13h-6M8 13H2"/></svg>
+
+                        Issues
+                    </a>
+                    <a href="documentation.html">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+
+                        Documentation
+                    </a>
+                </div>
+
+                <div class="footer-support">
+                    <span>Join the community</span>
+                    <div class="support-links">
+                        <a href="https://discord.gg/AGfjRk4ydj" target="_blank" rel="noopener" class="support-btn discord">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.317 4.369a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.445.865-.608 1.249a18.27 18.27 0 0 0-5.487 0 12.51 12.51 0 0 0-.617-1.25.077.077 0 0 0-.079-.036A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .079.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127c-.598.35-1.22.645-1.873.891a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.056c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.096 2.157 2.42 0 1.332-.955 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.332-.946 2.418-2.157 2.418z"/></svg>
+
+                            Discord
+                        </a>
+                        <a href="https://matrix.to/#/%23kait2en:matrix.org" target="_blank" rel="noopener" class="support-btn matrix">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M6.5 3H3v18h3.5"/><path d="M17.5 3H21v18h-3.5"/><path d="M8 16.5v-8"/><path d="M8 10.6c.4-1.4 1.4-2.1 2.5-2.1 1.2 0 2 .9 2 2.3v5.7"/><path d="M12.5 10.6c.4-1.4 1.4-2.1 2.5-2.1 1.2 0 2 .9 2 2.3v5.7"/></svg>
+
+                            Matrix
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>GPL · KAIT2EN Fedora</p>
+                <p>Made for T2 Macs that deserve a current kernel</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Navigation Modal -->
+    <div id="nav-modal" class="nav-modal">
+        <div class="nav-modal-header">
+            <a href="index.html" class="nav-logo" aria-label="KAIT2EN Fedora">
+                <img src="img/kait2en-wordmark.png" alt="KAIT2EN Fedora">
+            </a>
+            <button class="nav-modal-close" onclick="closeMenu()" aria-label="Close menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+        <div class="nav-modal-content">
+            <div class="nav-modal-section">
+                <h4>Site Navi</h4>
+                <div class="nav-modal-links">
+                    <a href="index.html#installation">Install</a>
+                    <a href="patches.html" class="active">Patches</a>
+                    <a href="faq.html">FAQ</a>
+                    <a href="documentation.html">Docs</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="index.html#donate">Funding</a>
+                    <a href="https://github.com/kaiT2en/KaiT2en-Fedora" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+
+                        GitHub
+                    </a>
+                    <a href="https://discord.gg/AGfjRk4ydj" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20.317 4.369a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.445.865-.608 1.249a18.27 18.27 0 0 0-5.487 0 12.51 12.51 0 0 0-.617-1.25.077.077 0 0 0-.079-.036A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .079.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127c-.598.35-1.22.645-1.873.891a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.056c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.096 2.157 2.42 0 1.332-.955 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.332-.946 2.418-2.157 2.418z"/></svg>
+
+                        Discord
+                    </a>
+                    <a href="https://matrix.to/#/%23kait2en:matrix.org" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M6.5 3H3v18h3.5"/><path d="M17.5 3H21v18h-3.5"/><path d="M8 16.5v-8"/><path d="M8 10.6c.4-1.4 1.4-2.1 2.5-2.1 1.2 0 2 .9 2 2.3v5.7"/><path d="M12.5 10.6c.4-1.4 1.4-2.1 2.5-2.1 1.2 0 2 .9 2 2.3v5.7"/></svg>
+
+                        Matrix
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+        <img id="lightbox-img" src="" alt="">
+    </div>
+</body>
+</html>
